@@ -1,4 +1,4 @@
-require 'bookyt_project'
+require 'bookyt_projects'
 require 'rails'
 
 module BookytProject
