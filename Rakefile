@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "bookyt_projects"
   gem.homepage = "http://github.com/raskhadafi/bookyt_projects"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Rails engine for project management}
+  gem.description = %Q{Rails engine for project management it's used to extend the functionallity of bookyt.}
   gem.email = "roman.simecek@cyt.ch"
   gem.authors = ["Roman Simecek"]
   # dependencies defined in Gemfile
@@ -42,7 +42,7 @@ end
 
 task :default => :test
 
-require 'rake/rdoctask'
+require 'rdoc/task'
 Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
