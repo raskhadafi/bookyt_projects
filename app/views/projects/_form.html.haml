@@ -1,0 +1,8 @@
+= simple_form_for @project do |f|
+  = f.input :name
+  = f.input :comment
+  = f.input :from
+  = f.input :to
+  = f.association :project_state
+  = f.association :client
+  = f.button :submit
