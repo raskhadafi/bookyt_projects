@@ -1,0 +1,8 @@
+de:
+  activerecord:
+    models:
+      project: Projekte
+      project_state: Projektstatus
+    attributes:
+      project_state:
+        name: Bezeichnung
