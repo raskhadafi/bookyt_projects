@@ -1,8 +1,11 @@
-= simple_form_for @project do |f|
-  = f.input :name
-  = f.input :comment
-  = f.input :from
-  = f.input :to
-  = f.association :project_state
-  = f.association :client
-  = f.button :submit
+= semantic_form_for @project do |f|
+  = f.semantic_errors
+  = f.inputs do
+    = f.input :name, :input_html => {'data-autofocus' => 'true'}
+    = f.input :comment
+    = f.input :from, :as => :date_field
+    = f.input :to, :as => :date_field
+    = f.input :project_state
+    = f.input :client
+  = f.buttons do
+    = f.submit
