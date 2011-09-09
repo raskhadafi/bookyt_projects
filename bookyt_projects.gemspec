@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bookyt_projects}
-  s.version = "0.0.1"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Roman Simecek}]
-  s.date = %q{2011-09-08}
+  s.date = %q{2011-09-09}
   s.description = %q{Rails engine for project management it's used to extend the functionallity of bookyt.}
   s.email = %q{roman.simecek@cyt.ch}
   s.extra_rdoc_files = [
@@ -24,6 +24,19 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "app/assets/stylesheets/bookyt_projects.sass",
+    "app/controllers/project_states_controller.rb",
+    "app/controllers/projects_controller.rb",
+    "app/models/project.rb",
+    "app/models/project_state.rb",
+    "app/views/project_states/_form.html.haml",
+    "app/views/project_states/new.html.haml",
+    "app/views/projects/_form.html.haml",
+    "app/views/projects/_list.html.haml",
+    "app/views/projects/new.html.haml",
+    "bookyt_projects.gemspec",
+    "config/locales/de.yml",
+    "config/routes.rb",
     "lib/bookyt_projects.rb",
     "lib/bookyt_projects/navigation.rb",
     "lib/bookyt_projects/railtie.rb",
