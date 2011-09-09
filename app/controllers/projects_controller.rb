@@ -1,0 +1,3 @@
+class ProjectsController < AuthorizedController
+  
+end
