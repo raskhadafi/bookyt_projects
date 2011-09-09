@@ -5,11 +5,13 @@ de:
       project_state: Projektstatus
     attributes:
       project:
-        name:           Bezeichnung
-        comment:        Kommentar
-        from:           Von
-        to:             Bis
-        project_state:  Status
-        client:         Kunde
+        name:             Bezeichnung
+        comment:          Kommentar
+        from:             Von
+        to:               Bis
+        project_state:    Status
+        project_state_id: Status
+        client:           Kunde
+        client_id:        Kunde
       project_state:
         name: Bezeichnung
