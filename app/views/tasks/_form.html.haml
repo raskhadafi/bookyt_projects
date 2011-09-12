@@ -1,0 +1,12 @@
+= semantic_form_for @task do |f| #when:date from:datetime to:datetime person_id:integer project_id:integer comment:string
+  = f.inputs do
+    = f.input :person
+    = f.input :project
+  = f.inputs do
+    = f.input :when, :as => :date_field
+    = f.input :from, :as => :time_field
+    = f.input :to, :as => :time_field
+  = f.inputs do
+    = f.input :comment
+  = f.buttons do
+    = f.commit_button
