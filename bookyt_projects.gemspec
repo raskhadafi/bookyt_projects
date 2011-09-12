@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bookyt_projects}
-  s.version = "0.2.0"
+  s.version = "0.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Roman Simecek}]
@@ -35,7 +35,9 @@ Gem::Specification.new do |s|
     "app/views/project_states/new.html.haml",
     "app/views/projects/_form.html.haml",
     "app/views/projects/_list.html.haml",
+    "app/views/projects/_resource_detail.html.haml",
     "app/views/projects/new.html.haml",
+    "app/views/projects/show.html.haml",
     "app/views/tasks/_form.html.haml",
     "bookyt_projects.gemspec",
     "config/locales/de.yml",
