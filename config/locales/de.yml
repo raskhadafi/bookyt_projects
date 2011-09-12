@@ -16,3 +16,7 @@ de:
         client_id:        Kunde
       project_state:
         name: Bezeichnung
+      task:
+        person: Person
+        when: Datum
+        duration: Dauer
