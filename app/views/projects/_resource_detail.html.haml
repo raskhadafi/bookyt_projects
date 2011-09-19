@@ -20,6 +20,6 @@
     %tr
       %td= task.person
       %td= task.when
-      %td= task.duration
+      %td= t('bookyt.projects.minutes', :duration => task.duration)
 
 = link_to t_title(:new, Task), new_project_task_path(resource)
