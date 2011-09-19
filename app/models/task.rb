@@ -10,6 +10,8 @@ class Task < ActiveRecord::Base
   
   # The duration of the task in minutes
   def duration
-    (to.to_f - from.to_f).to_i / 60
+    minutes = (to.to_f - from.to_f).to_i / 60
+    
+    minutes < 0 ? 1.day.to_i + minutes : minutes
   end
 end
