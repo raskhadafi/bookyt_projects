@@ -13,10 +13,16 @@ de:
         project_state:    Status
         project_state_id: Status
         client:           Kunde
-        client_id:        Kunde
+        client_id:        Kunde       
       project_state:
         name: Bezeichnung
       task:
         person: Person
         when: Datum
         duration: Dauer
+        project: Projekt
+        comment: Kommentar
+        time: Zeitraum
+  bookyt:
+    projects:
+      minutes: "%{duration} Minuten"
