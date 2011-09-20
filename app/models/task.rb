@@ -12,15 +12,17 @@ class Task < ActiveRecord::Base
   validates_numericality_of :hours,   :only_integer => true, :unless => :from
   validates_numericality_of :minutes, :only_integer => true, :unless => :from
   
-  before_save :calculate_hours, :if => :hours_minutes
+  before_save :calculate_hours
   
   def hours_minutes
     minutes || hours
   end
   
   def calculate_hours
-    self.from = DateTime.now
-    self.to = self.from + hours.to_i.hours + minutes.to_i.minutes
+    unless hours.empty? or minutes.empty?
+      self.from = DateTime.now
+      self.to = self.from + hours.to_i.hours + minutes.to_i.minutes
+    end
   end
   
   # The duration of the task in minutes
