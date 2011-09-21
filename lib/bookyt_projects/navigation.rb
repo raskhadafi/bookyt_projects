@@ -7,7 +7,7 @@ module BookytProjects
         projects.item :new_project, t_title(:new, Project), new_project_path
         projects.item :project_states, t_model(ProjectState), project_states_path, :highlights_on => /\/project_states($|\/([0-9]*|new)($|\/.*))/ 
       end
-      navigation.item :capture_hours, t_title(:new, Task), new_task_path
+      navigation.item :capture_hours, t_title(:new, Task), new_task_path, :if => Proc.new { user_signed_in? }
     end
   end
 end
