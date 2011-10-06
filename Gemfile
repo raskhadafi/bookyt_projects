@@ -2,7 +2,7 @@ source "http://rubygems.org"
 
 # Rails
 # =====
-gem 'rails', '~> 3.1.0.rc'
+gem 'rails', '~> 3.1.0'
 
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.

@@ -93,6 +93,6 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 1.0.0)
   jeweler (~> 1.6.4)
-  rails (~> 3.1.0.rc)
+  rails (~> 3.1.0)
   rcov
   shoulda
