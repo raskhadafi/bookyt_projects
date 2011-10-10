@@ -31,4 +31,8 @@ class Task < ActiveRecord::Base
     
     minutes < 0 ? 1.day.to_i + minutes : minutes
   end
+
+  def to_s
+    "#{duration} => #{person}"
+  end
 end
