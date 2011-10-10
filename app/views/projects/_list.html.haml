@@ -4,7 +4,7 @@
     %tr
       - @attributes.each do |field|
         %th= t_attr field, collection.first.class
-      %th.new-task= t_title(:new, Task)
+      %th.new-task= t_title(:new, Activity)
       %th.action-links
 
   - @attributes = @attributes - ['client_id', 'project_state_id']
@@ -15,7 +15,7 @@
           %td= r.send(field) if r.respond_to?(field)
         %td= r.client
         %td= r.project_state
-        %td= link_to t_title(:new, Task), new_project_task_url(r)
+        %td= link_to t_title(:new, Activity), new_project_activity_url(r)
         %td.action-links
           = list_link_for(:show, r)
           = list_link_for(:edit, r)

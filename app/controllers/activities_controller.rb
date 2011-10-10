@@ -3,20 +3,20 @@ class ActivitiesController < AuthorizedController
 
   def new
     # Allow callers specifying defaults
-    @task = Activity.new(params[:task])
+    @activity = Activity.new(params[:activity])
 
     # Nested resources support
-    @task.project_id ||= params[:project_id] if params[:project_id]
+    @activity.project_id ||= params[:project_id] if params[:project_id]
 
     # Educated guessing of defaults
-    @task.person = current_user.person if current_user
+    @activity.person = current_user.person if current_user
     
     new!
   end
 
   def create
-    @task = Activity.create(params[:task])
-    @project = @task.project
+    @activity = Activity.create(params[:activity])
+    @project = @activity.project
 
     create! { project_path(@project) }
   end

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :projects do
-    resources :tasks
+    resources :activities
   end
   resources :project_states
-  resources :tasks
+  resources :activities
 end

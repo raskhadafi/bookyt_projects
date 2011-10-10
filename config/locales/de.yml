@@ -3,7 +3,7 @@ de:
     models:
       project: Projekte
       project_state: Projektstatus
-      task: Arbeitsschritt
+      activity: Arbeitsschritt
     attributes:
       project:
         name:             Bezeichnung
@@ -16,7 +16,7 @@ de:
         client_id:        Kunde       
       project_state:
         name: Bezeichnung
-      task:
+      activity:
         person: Person
         when: Datum
         duration: Dauer
