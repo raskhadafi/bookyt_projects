@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bookyt_projects}
-  s.version = "0.3.2"
+  s.version = "0.6.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Roman Simecek}]
-  s.date = %q{2011-10-06}
+  s.date = %q{2011-10-10}
   s.description = %q{Rails engine for project management it's used to extend the functionallity of bookyt.}
   s.email = %q{roman.simecek@cyt.ch}
   s.extra_rdoc_files = [
@@ -25,12 +25,15 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "app/assets/stylesheets/bookyt_projects.sass",
+    "app/controllers/activities_controller.rb",
     "app/controllers/project_states_controller.rb",
     "app/controllers/projects_controller.rb",
-    "app/controllers/tasks_controller.rb",
+    "app/models/activity.rb",
     "app/models/project.rb",
     "app/models/project_state.rb",
-    "app/models/task.rb",
+    "app/views/activities/_form.html.haml",
+    "app/views/activities/_resource_detail.html.haml",
+    "app/views/activities/show.html.haml",
     "app/views/project_states/_form.html.haml",
     "app/views/project_states/new.html.haml",
     "app/views/projects/_form.html.haml",
@@ -38,8 +41,6 @@ Gem::Specification.new do |s|
     "app/views/projects/_resource_detail.html.haml",
     "app/views/projects/new.html.haml",
     "app/views/projects/show.html.haml",
-    "app/views/tasks/_form.html.haml",
-    "app/views/tasks/_resource_detail.html.haml",
     "bookyt_projects.gemspec",
     "config/locales/de.yml",
     "config/routes.rb",
@@ -59,20 +60,20 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<rails>, ["~> 3.1.0.rc"])
+      s.add_runtime_dependency(%q<rails>, ["~> 3.1.0"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.6.4"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
     else
-      s.add_dependency(%q<rails>, ["~> 3.1.0.rc"])
+      s.add_dependency(%q<rails>, ["~> 3.1.0"])
       s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
       s.add_dependency(%q<rcov>, [">= 0"])
     end
   else
-    s.add_dependency(%q<rails>, ["~> 3.1.0.rc"])
+    s.add_dependency(%q<rails>, ["~> 3.1.0"])
     s.add_dependency(%q<shoulda>, [">= 0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
