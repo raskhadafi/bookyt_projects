@@ -1,9 +1,9 @@
-class TasksController < AuthorizedController
+class ActivitiesController < AuthorizedController
   belongs_to :project
 
   def new
     # Allow callers specifying defaults
-    @task = Task.new(params[:task])
+    @task = Activity.new(params[:task])
 
     # Nested resources support
     @task.project_id ||= params[:project_id] if params[:project_id]
@@ -15,7 +15,7 @@ class TasksController < AuthorizedController
   end
 
   def create
-    @task = Task.create(params[:task])
+    @task = Activity.create(params[:task])
     @project = @task.project
 
     create! { project_path(@project) }

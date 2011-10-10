@@ -1,0 +1,19 @@
+%table{:class => "#{collection.first.class.to_s.downcase} detail"}
+  %tr
+    %th= t_attr(:project)
+    %td= resource.project
+  %tr
+    %th= t_attr(:person)
+    %td= resource.person
+  %tr
+    %th= t_attr(:when)
+    %td= l(resource.when)
+  %tr
+    %th= t_attr(:time)
+    %td= "#{l(resource.from, :format => :time)} - #{l(resource.to, :format => :time)}"
+  %tr
+    %th= t_attr(:duration)
+    %td= t('bookyt.projects.minutes', :duration => resource.duration)
+  %tr
+    %th= t_attr(:comment)
+    %td= resource.comment

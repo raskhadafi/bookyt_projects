@@ -1,4 +1,4 @@
-class Task < ActiveRecord::Base
+class Activity < ActiveRecord::Base
   belongs_to :project
   belongs_to :person
   
