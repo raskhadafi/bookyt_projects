@@ -3,7 +3,7 @@
     = f.input :person
     = f.input :project
   = f.inputs do
-    = f.input :when, :as => :date_field
+    = f.input :when, :as => :date_field, :required => true
     = f.input :from, :as => :hour_field
     = f.input :to, :as => :hour_field
     = f.input :hours
