@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bookyt_projects}
-  s.version = "0.6.1"
+  s.version = "0.6.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Roman Simecek}]
-  s.date = %q{2011-10-10}
+  s.date = %q{2011-10-11}
   s.description = %q{Rails engine for project management it's used to extend the functionallity of bookyt.}
   s.email = %q{roman.simecek@cyt.ch}
   s.extra_rdoc_files = [
