@@ -4,9 +4,9 @@ class Activity < ActiveRecord::Base
   
   attr_accessor :minutes, :hours
   
-  validates :project, :presence => true
-  validates :person,  :presence => true
-  validates :when,    :presence => true
+  validates :project, :presence => true, :allow_blank => false
+  validates :person,  :presence => true, :allow_blank => false
+  validates_date :when, :allow_nil => false, :allow_blank => false
   validates :from,    :presence => true, :unless => :hours_minutes
   validates :to,      :presence => true, :unless => :hours_minutes
   validates_numericality_of :hours,   :only_integer => true, :unless => :from
