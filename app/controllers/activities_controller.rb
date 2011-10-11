@@ -1,12 +1,12 @@
 class ActivitiesController < AuthorizedController
-  belongs_to :project
+  belongs_to :project, :optional => true
 
   def new
     # Allow callers specifying defaults
     if params[:activity]
       @activity = Activity.new(params[:activity])
     else
-      @activity = Activity.new
+      @activity = Activity.new(:when => Date.today)
     end
 
     # Nested resources support
@@ -14,16 +14,11 @@ class ActivitiesController < AuthorizedController
     # Educated guessing of defaults
     @activity.person = current_user.person if current_user
 
-    @project ||= Project.new
-    
     new!
   end
 
   def create
-    @activity = Activity.create(params[:activity])
-    @project = @activity.project
-
-    create! { project_path(@project) }
+    create! { @activity.project }
   end
 
   def index
