@@ -7,10 +7,11 @@
       %th.new-task= t_title(:new, Activity)
       %th.action-links
 
-  - @attributes = @attributes - ['client_id', 'project_state_id']
+  - @attributes = @attributes - ['name', 'client_id', 'project_state_id']
   %tbody
     - collection.each do |r|
       %tr
+        %td= link_to r.name, r, {'data-href-container' => 'tr'}
         - @attributes.each do |field|
           %td= r.send(field) if r.respond_to?(field)
         %td= r.client
