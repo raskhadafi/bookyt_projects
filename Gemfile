@@ -12,3 +12,8 @@ group :development do
   gem "jeweler", "~> 1.6.4"
   gem "rcov", ">= 0"
 end
+
+group :test, :development do
+  gem "rspec-rails", "~> 2.6"
+end
+
