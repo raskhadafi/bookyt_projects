@@ -13,6 +13,27 @@ group :development do
   gem "rcov", ">= 0"
 end
 
+# Test
+# ====
+group :test do
+  # Matchers/Helpers
+  gem 'shoulda'
+
+  # Fixtures
+  gem "factory_girl_rails"
+
+  # Mocking
+  # gem 'mocha'
+
+  # Browser
+  # gem 'capybara'
+
+  # Autotest
+  # gem 'autotest'
+  # gem 'autotest-rails'
+  # gem 'ZenTest', '< 4.6.0' # Keep it working with gems < 1.8
+end
+
 group :test, :development do
   gem "rspec-rails", "~> 2.6"
 end
