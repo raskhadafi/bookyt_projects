@@ -1,32 +1,32 @@
-source "http://rubygems.org"
+# Settings
+# ========
+source :rubygems
+
+gemspec
 
 # Rails
 # =====
 gem 'rails', '~> 3.1.0'
 
-# Add dependencies to develop your gem here.
-# Include everything needed to run rake, tests, features, etc.
+# Development
+# ===========
 group :development do
-  gem "shoulda", ">= 0"
-  gem "bundler", "~> 1.0.0"
-  gem "jeweler", "~> 1.6.4"
-  gem "rcov", ">= 0"
 end
 
 # Test
 # ====
 group :test do
-  # Matchers/Helpers
-  gem 'shoulda'
+  # Framework
+  gem "rspec-rails"
+
+  # Browser
+  gem "capybara"
 
   # Fixtures
   gem "factory_girl_rails"
 
-  # Mocking
-  # gem 'mocha'
-
-  # Browser
-  # gem 'capybara'
+  # Matchers/Helpers
+  gem 'shoulda'
 
   # Autotest
   # gem 'autotest'
@@ -35,6 +35,6 @@ group :test do
 end
 
 group :test, :development do
-  gem "rspec-rails", "~> 2.6"
+  gem "rspec-rails"
 end
 
