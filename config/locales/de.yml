@@ -18,9 +18,13 @@ de:
         name: Bezeichnung
       activity:
         person: Person
+        person_id: Person
         when: Datum
+        from: Von
+        to:   Bis
         duration: Dauer
         project: Projekt
+        project_id: Projekt
         comment: Kommentar
         time: Zeitraum
   bookyt:
