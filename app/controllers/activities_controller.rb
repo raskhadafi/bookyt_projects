@@ -20,8 +20,4 @@ class ActivitiesController < AuthorizedController
   def create
     create! { @activity.project }
   end
-
-  def index
-    redirect_to :projects
-  end
 end
