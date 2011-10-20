@@ -2,10 +2,10 @@
   = f.semantic_errors
   = f.inputs do
     = f.input :name, :input_html => {'data-autofocus' => 'true'}
-    = f.input :comment
+    = f.input :comment, :input_html => {:rows => 5}
     = f.input :from, :as => :date_field
     = f.input :to, :as => :date_field
     = f.input :project_state
     = f.input :client
   = f.buttons do
-    = f.submit
+    = f.commit_button
