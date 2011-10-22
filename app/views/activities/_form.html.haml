@@ -1,7 +1,7 @@
-= semantic_form_for @activity do |f| #when:date from:datetime to:datetime person_id:integer project_id:integer comment:string
+= semantic_form_for @activity do |f|
   = f.inputs do
-    = f.input :person
-    = f.input :project
+    = f.input :project, :as => :combobox
+    = f.input :person, :as => :combobox
   = f.inputs do
     = f.input :when, :as => :date_field, :required => true
     = f.input :from, :as => :hour_field
