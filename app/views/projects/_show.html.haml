@@ -1,6 +1,10 @@
 .form-view
   = render 'form'
 
+.contextual
+  = icon_link_to :new, new_project_activity_path(resource)
+%h2= t_title :index, Activity
+
 %table.list
   %tr
     - [:person, :when, :duration].each do |attr|
@@ -10,5 +14,3 @@
       %td= task.person
       %td= task.when
       %td= t('bookyt.projects.minutes', :duration => task.duration)
-
-= link_to t_title(:new, Activity), new_project_activity_path(resource)
