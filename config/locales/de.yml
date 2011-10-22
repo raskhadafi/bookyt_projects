@@ -23,6 +23,8 @@ de:
         from: Von
         to:   Bis
         duration: Dauer
+        hours: Stunden
+        minutes: Minuten
         project: Projekt
         project_id: Projekt
         comment: Kommentar
