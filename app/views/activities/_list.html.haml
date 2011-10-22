@@ -7,7 +7,7 @@
   - collection.each do |task|
     %tr
       %td= task.person
-      %td= task.when
+      %td= link_to task.when, task, {'data-href-container' => 'tr'}
       %td= t('bookyt.projects.minutes', :duration => task.duration)
       %td.action-links
         = list_link_for(:edit, task)
