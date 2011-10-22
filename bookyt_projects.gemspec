@@ -5,13 +5,15 @@ require 'bookyt_projects/version'
 
 Gem::Specification.new do |s|
   # Description
-  s.name = "bookyt_projects"
+  s.name         = "bookyt_projects"
   s.version      = BookytPos::VERSION
+  s.summary      = "Project management plugin for bookyt"
+  s.description  = "This plugin extends bookyt with project management functionality."
+
+  s.homepage     = "https://github.com/raskhadafi/bookyt_projects"
   s.authors      = ["Roman Simecek (CyT)", "Simon Hürlimann (CyT)"]
   s.email        = ["roman.simecek@cyt.ch", "simon.huerlimann@cyt.ch"]
-  s.homepage     = "https://github.com/raskhadafi/bookyt_projects"
-  s.summary      = "Project management plugin for bookyt"
-  s.description = "This plugin extends bookyt with project management functionallty."
+  s.licenses     = ["MIT"]
 
   # Files
   s.extra_rdoc_files = [
@@ -22,7 +24,6 @@ Gem::Specification.new do |s|
 
   s.platform     = Gem::Platform::RUBY
   s.require_path = 'lib'
-  s.licenses = ["MIT"]
 
   # Dependencies
   if s.respond_to? :specification_version then
