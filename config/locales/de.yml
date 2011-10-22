@@ -3,7 +3,7 @@ de:
     models:
       project:            Projekt
       project_state:      Projektstatus
-      activity:           Arbeitsschritt
+      activity:           Aktivität
     attributes:
       project:
         name:             Bezeichnung
