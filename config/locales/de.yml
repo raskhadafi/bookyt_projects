@@ -1,7 +1,7 @@
 de:
   activerecord:
     models:
-      project: Projekte
+      project: Projekt
       project_state: Projektstatus
       activity: Arbeitsschritt
     attributes:
