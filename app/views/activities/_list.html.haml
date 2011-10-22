@@ -1,0 +1,9 @@
+%table.list
+  %tr
+    - [:person, :when, :duration].each do |attr|
+      %th= t_attr(attr, Activity)
+  - collection.each do |task|
+    %tr
+      %td= task.person
+      %td= task.when
+      %td= t('bookyt.projects.minutes', :duration => task.duration)
