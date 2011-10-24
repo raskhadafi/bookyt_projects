@@ -1,6 +1,10 @@
 $('#new_<%= resource.class.name.underscore %>').remove();
 var form = '<div id="new_activity_dialog"><%=j render "form" %></div>';
 $('#<%= resource.class.name.tableize %>_list').before(form);
-$('#new_activity_dialog').dialog();
+$('#new_activity_dialog').dialog({
+  modal:    true,
+  minWidth: 580,
+  title:    '<%=j t_title :edit, Activity %>'
+});
 
 initializeBehaviours();
