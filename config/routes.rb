@@ -4,4 +4,8 @@ Rails.application.routes.draw do
   end
   resources :project_states
   resources :activities
+
+  resources :employees do
+    resources :timesheets
+  end
 end

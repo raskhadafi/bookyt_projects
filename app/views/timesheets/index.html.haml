@@ -1,0 +1,21 @@
+%h1= t_title
+
+%table.list
+  %tr
+    %th Datum
+    %th Wochentag
+    %th Soll-Stunden
+    %th Stunden
+    %th Über-/Unterzeit
+    %th Saldo
+
+  - overall_overtime = 0
+  - @work_days.each do |day|
+    - overall_overtime += day.overtime
+    %tr
+      %td= day.date
+      %td= l(day.date, :format => '%A')
+      %td= day.hours_due
+      %td= day.hours_worked
+      %td= day.overtime
+      %td= overall_overtime

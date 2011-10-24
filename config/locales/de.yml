@@ -4,6 +4,7 @@ de:
       project:            Projekt
       project_state:      Projektstatus
       activity:           Aktivität
+      timesheet:          Stundenrapport
     attributes:
       project:
         name:             Bezeichnung
@@ -33,3 +34,8 @@ de:
   bookyt:
     projects:
       minutes:            "%{duration} Minuten"
+
+  # Titles
+  timesheets:
+    index:
+      title:  Stundenrapport
