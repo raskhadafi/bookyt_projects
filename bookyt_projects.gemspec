@@ -37,12 +37,14 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rspec-rails>)
     else
       s.add_dependency(%q<rails>, ["~> 3.1.0"])
+      s.add_dependency(%q<recurrence>, [">= 0"])
       s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<rcov>, [">= 0"])
       s.add_dependency(%q<rspec-rails>)
     end
   else
     s.add_dependency(%q<rails>, ["~> 3.1.0"])
+    s.add_dependency(%q<recurrence>, [">= 0"])
     s.add_dependency(%q<shoulda>, [">= 0"])
     s.add_dependency(%q<rcov>, [">= 0"])
     s.add_dependency(%q<rspec-rails>)
