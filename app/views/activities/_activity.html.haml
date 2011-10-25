@@ -1,0 +1,7 @@
+%tr[activity]
+  %td= activity.person
+  %td= link_to activity.when, activity, {'data-href-container' => 'tr'}
+  %td= t('bookyt.projects.minutes', :duration => activity.duration)
+  %td.action-links
+    = list_link_for(:edit, activity, :remote => true)
+    = list_link_for(:delete, activity)
