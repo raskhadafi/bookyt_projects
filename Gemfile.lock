@@ -1,8 +1,9 @@
 PATH
   remote: .
   specs:
-    bookyt_projects (0.8.0)
+    bookyt_projects (0.10.0)
       rails (~> 3.1.0)
+      recurrence
 
 GEM
   remote: http://rubygems.org/
@@ -94,6 +95,9 @@ GEM
     rcov (0.9.11)
     rdoc (3.10)
       json (~> 1.4)
+    recurrence (1.2.0)
+      activesupport (>= 2.3.0)
+      i18n
     rspec (2.6.0)
       rspec-core (~> 2.6.0)
       rspec-expectations (~> 2.6.0)
