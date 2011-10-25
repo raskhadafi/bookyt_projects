@@ -9,8 +9,8 @@ de:
       project:
         name:             Bezeichnung
         comment:          Kommentar
-        from:             Von
-        to:               Bis
+        duration_from:    Begin
+        duration_to:      Ende
         project_state:    Status
         project_state_id: Status
         client:           Kunde
@@ -20,9 +20,9 @@ de:
       activity:
         person:           Person
         person_id:        Person
-        when:             Datum
-        from:             Von
-        to:               Bis
+        date:             Datum
+        duration_from:    Von
+        duration_to:      Bis
         duration:         Dauer
         hours:            Stunden
         minutes:          Minuten

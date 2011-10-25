@@ -3,8 +3,8 @@
   = f.inputs do
     = f.input :name, :input_html => {'data-autofocus' => 'true'}
     = f.input :comment, :input_html => {:rows => 5}
-    = f.input :from, :as => :date_field
-    = f.input :to, :as => :date_field
+    = f.input :duration_from, :as => :date_field
+    = f.input :duration_to, :as => :date_field
     = f.input :project_state
     = f.input :client, :as => :combobox
   = f.buttons do

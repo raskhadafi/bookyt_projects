@@ -16,7 +16,7 @@ class WorkDay
   end
 
   def hours_worked
-    employment.employee.activities.where(:when => date).to_a.sum(&:duration)
+    employment.employee.activities.where(:date => date).to_a.sum(&:duration)
   end
 
   def overtime

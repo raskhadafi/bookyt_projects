@@ -6,11 +6,11 @@ class Activity < ActiveRecord::Base
   
   validates :project, :presence => true, :allow_blank => false
   validates :person,  :presence => true, :allow_blank => false
-  validates_date :when, :allow_nil => false, :allow_blank => false
-  validates :from,    :presence => true, :unless => :hours_minutes
-  validates :to,      :presence => true, :unless => :hours_minutes
-  validates_numericality_of :hours,   :only_integer => true, :unless => :from
-  validates_numericality_of :minutes, :only_integer => true, :unless => :from
+  validates_date :date, :allow_nil => false, :allow_blank => false
+  validates :duration_from,    :presence => true, :unless => :hours_minutes
+  validates :duration_to,      :presence => true, :unless => :hours_minutes
+  validates_numericality_of :hours,   :only_integer => true, :unless => :duration_from
+  validates_numericality_of :minutes, :only_integer => true, :unless => :duration_from
   
   before_save :calculate_hours
   
@@ -20,14 +20,14 @@ class Activity < ActiveRecord::Base
   
   def calculate_hours
     unless hours.empty? or minutes.empty?
-      self.from = DateTime.now
-      self.to = self.from + hours.to_i.hours + minutes.to_i.minutes
+      self.duration_from = DateTime.now
+      self.duration_to = self.duration_from + hours.to_i.hours + minutes.to_i.minutes
     end
   end
   
   # The duration of the task in minutes
   def duration
-    minutes = (to.to_f - from.to_f).to_i / 60
+    minutes = (duration_to.to_f - duration_from.to_f).to_i / 60
     
     minutes < 0 ? 1.day.to_i + minutes : minutes
   end
