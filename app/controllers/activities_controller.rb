@@ -6,7 +6,7 @@ class ActivitiesController < AuthorizedController
     if params[:activity]
       @activity = Activity.new(params[:activity])
     else
-      @activity = Activity.new(:when => Date.today)
+      @activity = Activity.new(:date => Date.today)
     end
 
     # Nested resources support
