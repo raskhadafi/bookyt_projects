@@ -9,10 +9,12 @@ class ActivitiesController < AuthorizedController
       @activity = Activity.new(:date => Date.today)
     end
 
-    # Nested resources support
-    @activity.project_id ||= params[:project_id] if params[:project_id]
-    # Educated guessing of defaults
+    # Educated guessing of person
     @activity.person = current_user.person if current_user
+
+    # Educated guessing of project
+    @activity.project_id ||= params[:project_id] if params[:project_id]
+    @activity.project_id ||= @activity.person.activities.order(:duration_to).last
 
     new!
   end
