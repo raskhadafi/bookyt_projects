@@ -1,5 +1,5 @@
 module BookytProjects
-  module Employee
+  module Person
     extend ActiveSupport::Concern
 
     included do

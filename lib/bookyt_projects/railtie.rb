@@ -6,7 +6,7 @@ module BookytProjects
     engine_name "bookyt_projects"
 
     config.to_prepare do
-      ::Employee.send :include, BookytProjects::Employee
+      ::Person.send :include, BookytProjects::Person
     end
   end
 end
