@@ -1,11 +1,13 @@
 class Activity < ActiveRecord::Base
+  # Associations
   belongs_to :project
   belongs_to :person
+  validates :project, :presence => true, :allow_blank => false
+  validates :person,  :presence => true, :allow_blank => false
   
   attr_accessor :minutes, :hours
   
-  validates :project, :presence => true, :allow_blank => false
-  validates :person,  :presence => true, :allow_blank => false
+  # Duration
   validates_date :date, :allow_nil => false, :allow_blank => false
   validates :duration_from,    :presence => true, :unless => :hours_minutes
   validates :duration_to,      :presence => true, :unless => :hours_minutes
