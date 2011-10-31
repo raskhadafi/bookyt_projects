@@ -20,7 +20,7 @@ group :test do
   gem "rspec-rails"
 
   # Browser
-  gem "capybara"
+  #gem "capybara"
 
   # Fixtures
   gem "factory_girl_rails"
@@ -36,4 +36,9 @@ end
 
 group :test, :development do
   gem "rspec-rails"
+  gem 'sqlite3'
+  gem 'inherited_resources', '1.2.2'
+  gem 'devise'
+  gem 'cancan'
+  gem 'validates_timeliness'
 end
