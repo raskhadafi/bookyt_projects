@@ -1,14 +1,72 @@
 = semantic_form_for @activity do |f|
-  = f.inputs do
-    = f.input :project, :as => :combobox
-    = f.input :person, :as => :combobox
-  = f.inputs do
-    = f.input :date, :as => :date_field, :required => true
-    = f.input :duration_from, :as => :hour_field
-    = f.input :duration_to, :as => :hour_field
-    = f.input :hours
-    = f.input :minutes
-  = f.inputs do
-    = f.input :comment
-  = f.buttons do
-    = f.commit_button
+  #project{'data-role' => "page"}
+    .mobile-header{'data-role' => "header"}
+      %h2= t_title
+    = f.inputs do
+      = f.input :project, :as => :combobox
+    .mobile-footer{'data-role' => "footer"}
+      %div{'data-role' => "navbar", 'data-iconpos' => "bottom"}
+        %ul
+          %li
+            %a{:href => '#person', 'data-icon' => "arrow-r", 'data-iconpos' => "right"}= t('next')
+        
+  #person{'data-role' => "page"}
+    .mobile-header{'data-role' => "header"}
+      %h2= t_title
+    = f.inputs do
+      = f.input :person, :as => :combobox
+    .mobile-footer{'data-role' => "footer"}
+      %div{'data-role' => "navbar", 'data-iconpos' => "bottom"}
+        %ul
+          %li
+            %a{:href => '#project', 'data-icon' => "arrow-l", 'data-direction' => "reverse"}= t('back')
+          %li
+            %a{:href => '#date', 'data-icon' => "arrow-r"}= t('next')
+           
+  #date{'data-role' => "page"}
+    .mobile-header{'data-role' => "header"}
+      %h2= t_title
+    = f.inputs do
+      = f.input :date, :as => :date_field, :required => true
+    .mobile-footer{'data-role' => "footer"}
+      %div{'data-role' => "navbar", 'data-iconpos' => "bottom"}
+        %ul
+          %li
+            %a{:href => '#person', 'data-icon' => "arrow-l", 'data-direction' => "reverse"}= t('back')
+          %li
+            %a{:href => '#time', 'data-icon' => "arrow-r"}= t('next')
+            
+  #time{'data-role' => "page"}
+    .mobile-header{'data-role' => "header"}
+      %h2= t_title
+    = f.inputs do
+      = f.input :duration_from, :as => :hour_field
+      = f.input :duration_to, :as => :hour_field
+      = f.input :hours
+      = f.input :minutes
+    .mobile-footer{'data-role' => "footer"}
+      %div{'data-role' => "navbar", 'data-iconpos' => "bottom"}
+        %ul
+          %li
+            %a{:href => '#date', 'data-icon' => "arrow-l", 'data-direction' => 'reverse'}= t('back')
+          %li
+            %a{:href => '#comment', 'data-icon' => "arrow-r"}= t('next')
+                      
+  #comment{'data-role' => "page"}
+    .mobile-header{'data-role' => "header"}
+      %h2= t_title
+    = f.inputs do
+      = f.input :comment
+    .mobile-footer{'data-role' => "footer"}
+      %div{'data-role' => "navbar", 'data-iconpos' => "bottom"}
+        %ul
+          %li
+            %a{:href => '#date', 'data-icon' => "arrow-l", 'data-direction' => 'reverse'}= t('back')
+          %li
+            = link_to t_action(:save), url_for(@activity), {:remote => true, :class => 'submit_me', 'data-icon' => 'check'}
+           
+  #send{'data-role' => "page"}
+    .mobile-header{'data-role' => "header"}
+      %h2= t_title
+    = f.buttons do
+      = f.commit_button
