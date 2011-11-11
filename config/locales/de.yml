@@ -39,3 +39,7 @@ de:
   timesheets:
     index:
       title:  Stundenrapport
+
+  activities:
+    new:
+      title: Zeit erfassen
