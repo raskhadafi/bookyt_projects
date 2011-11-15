@@ -8,7 +8,7 @@ module BookytProjects
 
     module InstanceMethods
       def latest_project
-        activities.order(:duration_to).last.project
+        activities.order(:duration_to).last.try(:project)
       end
     end
   end
