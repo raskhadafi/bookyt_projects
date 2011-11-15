@@ -12,9 +12,11 @@ class BatchActivitiesController < ApplicationController
   end
 
   def create
-    date = params[:batch_activities][:date]
+    date = Date.parse(params[:batch_activities][:date])
     @activites = params[:activities].collect{|activity_params|
       Activity.create(activity_params.merge(:date => date, :minutes => "0"))
     }
+
+    redirect_to activities_path(:by_date => date.to_s(:db))
   end
 end
