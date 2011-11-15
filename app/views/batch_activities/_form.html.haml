@@ -16,7 +16,7 @@
           %td 
             = link_to activity.person, activity.person
             = a.hidden_field :person_id
-          %td= a.select :project_id, Project.all.map{|project| [project.to_s, project.id]}, {}, :style => 'width: 98%'
+          %td= a.select :project_id, Project.all.map{|project| [project.to_s, project.id]}, {:prompt => t_select_prompt(Project)}, :style => 'width: 98%'
           %td= a.text_field :hours, :style => 'width: 98%'
           %td= a.text_field :comment, :style => 'width: 98%'
 
