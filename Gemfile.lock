@@ -158,6 +158,7 @@ DEPENDENCIES
   capybara
   devise
   factory_girl_rails
+  has_scope
   inherited_resources (= 1.2.2)
   mysql2
   rails (~> 3.1.0)

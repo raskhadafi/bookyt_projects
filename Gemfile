@@ -18,6 +18,7 @@ gem 'devise'
 gem 'cancan'
 
 gem 'inherited_resources', '1.2.2'
+gem 'has_scope'
 
 # Development
 # ===========
