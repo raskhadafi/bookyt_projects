@@ -7,7 +7,7 @@ class BatchActivitiesController < ApplicationController
     people = current_tenant.company.employees
 
     @activities = people.map{|person|
-      person.activities.build
+      person.activities.build(:project => person.latest_project)
     }
   end
 
