@@ -1,6 +1,6 @@
 = semantic_form_for :batch_activities, :url => batch_activities_path do |f|
   = f.inputs do
-    = f.input :date, :input_html => {:value => @date}
+    = f.input :date, :label => t('attributes.date'), :input_html => {:value => @date}
 
   %table{:style => 'width: 100%'}
     %thead
