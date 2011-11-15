@@ -5,12 +5,12 @@ class Activity < ActiveRecord::Base
   validates :project, :presence => true, :allow_blank => false
   validates :person,  :presence => true, :allow_blank => false
   
-  attr_accessor :minutes, :hours
-  
   # Scopes
   scope :by_date, lambda {|value| where(:date => value)}
 
   # Duration
+  attr_accessor :minutes, :hours
+
   validates_date :date, :allow_nil => false, :allow_blank => false
   validates :duration_from,    :presence => true, :unless => :hours_minutes
   validates :duration_to,      :presence => true, :unless => :hours_minutes
