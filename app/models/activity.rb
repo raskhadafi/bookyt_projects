@@ -7,6 +7,9 @@ class Activity < ActiveRecord::Base
   
   attr_accessor :minutes, :hours
   
+  # Scopes
+  scope :by_date, lambda {|value| where(:date => value)}
+
   # Duration
   validates_date :date, :allow_nil => false, :allow_blank => false
   validates :duration_from,    :presence => true, :unless => :hours_minutes

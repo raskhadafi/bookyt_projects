@@ -1,6 +1,8 @@
 class ActivitiesController < AuthorizedController
   belongs_to :project, :optional => true
 
+  has_scope :by_date
+
   def new
     # Allow callers specifying defaults
     if params[:activity]
