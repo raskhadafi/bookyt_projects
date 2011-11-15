@@ -31,6 +31,10 @@ de:
         project_id:       Projekt
         comment:          Kommentar
         time:             Zeitraum
+        hours_due:        Soll-Stunden
+        hours_worked:     Arbeitsstunden
+        overtime:         Über-/Unterzeit
+        overall_overtime: Saldo
 
   bookyt:
     projects:

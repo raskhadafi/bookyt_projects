@@ -5,12 +5,12 @@
 
 %table.list
   %tr
-    %th Datum
+    %th= t_attr :date, Activity
     %th Wochentag
-    %th.number Soll-Stunden
-    %th.number Stunden
-    %th.number Über-/Unterzeit
-    %th.number Saldo
+    %th.number= t_attr :hours_due, Activity
+    %th.number= t_attr :hours_worked, Activity
+    %th.number= t_attr :overtime, Activity
+    %th.number= t_attr :overall_overtime, Activity
 
   - overall_overtime = 0
   - @work_days.each do |day|
