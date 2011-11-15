@@ -48,3 +48,4 @@ pkg
 #*.rbc
 rails/*
 log/*.log
+spec/dummy/log/*.log
