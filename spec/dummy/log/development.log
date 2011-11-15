@@ -1,0 +1,347 @@
+  [1m[36m (0.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (2.2ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (31.1ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (2.6ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("schema_migrations")
+  [1m[36m (2.3ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.0ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (3.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('0')[0m
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (2.7ms)[0m  [1mCREATE TABLE "account_types" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(100), "title" varchar(100), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("account_types")
+  [1m[36m (1.6ms)[0m  [1mCREATE INDEX "index_account_types_on_name" ON "account_types" ("name")[0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "accounts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(100), "parent_id" integer, "account_type_id" integer, "number" varchar(255), "code" varchar(255), "type" varchar(255), "holder_id" integer, "holder_type" varchar(255), "bank_id" integer, "esr_id" integer, "pc_id" varchar(255), "created_at" datetime, "updated_at" datetime, "iban" varchar(255)) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("accounts")[0m
+  [1m[35m (1.1ms)[0m  CREATE INDEX "index_accounts_on_account_type_id" ON "accounts" ("account_type_id")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("accounts")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_accounts_on_account_type_id')
+  [1m[36m (1.0ms)[0m  [1mCREATE INDEX "index_accounts_on_bank_id" ON "accounts" ("bank_id")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("accounts")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_accounts_on_bank_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_accounts_on_account_type_id')
+  [1m[36m (1.1ms)[0m  [1mCREATE INDEX "index_accounts_on_code" ON "accounts" ("code")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("accounts")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_accounts_on_code')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_accounts_on_bank_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_accounts_on_account_type_id')[0m
+  [1m[35m (1.0ms)[0m  CREATE INDEX "index_accounts_on_holder_id_and_holder_type" ON "accounts" ("holder_id", "holder_type")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("accounts")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_accounts_on_holder_id_and_holder_type')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_accounts_on_code')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_accounts_on_bank_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_accounts_on_account_type_id')[0m
+  [1m[35m (1.0ms)[0m  CREATE INDEX "index_accounts_on_type" ON "accounts" ("type")
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "activities" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "date" date, "duration_from" datetime, "duration_to" datetime, "person_id" integer, "project_id" integer, "comment" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "post_office_box" varchar(50), "extended_address" varchar(50), "street_address" varchar(50), "locality" varchar(50), "region" varchar(50), "postal_code" varchar(50), "country_name" varchar(50), "vcard_id" integer, "address_type" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("addresses")[0m
+  [1m[35m (1.0ms)[0m  CREATE INDEX "addresses_vcard_id_index" ON "addresses" ("vcard_id")
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "assets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "remarks" text, "amount" decimal(10,2), "state" varchar(255), "purchase_invoice_id" integer, "created_at" datetime, "updated_at" datetime, "selling_invoice_id" integer) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("assets")
+  [1m[36m (2.2ms)[0m  [1mCREATE INDEX "index_assets_on_purchase_invoice_id" ON "assets" ("purchase_invoice_id")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("assets")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_assets_on_purchase_invoice_id')[0m
+  [1m[35m (1.2ms)[0m  CREATE INDEX "index_assets_on_selling_invoice_id" ON "assets" ("selling_invoice_id")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("assets")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_assets_on_selling_invoice_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_assets_on_purchase_invoice_id')[0m
+  [1m[35m (1.3ms)[0m  CREATE INDEX "index_assets_on_state" ON "assets" ("state")
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "attachments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "file" varchar(255), "created_at" datetime, "updated_at" datetime, "object_id" integer, "object_type" varchar(255), "code" varchar(255)) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("attachments")
+  [1m[36m (1.3ms)[0m  [1mCREATE INDEX "index_attachments_on_object_id_and_object_type" ON "attachments" ("object_id", "object_type")[0m
+  [1m[35m (1.8ms)[0m  CREATE TABLE "banks" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "vcard_id" integer, "created_at" datetime, "updated_at" datetime, "swift" varchar(255), "clearing" varchar(255)) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("banks")[0m
+  [1m[35m (1.3ms)[0m  CREATE INDEX "index_banks_on_vcard_id" ON "banks" ("vcard_id")
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "booking_imports" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "csv_file_name" varchar(255), "csv_content_type" varchar(255), "csv_file_size" integer, "csv_updated_at" datetime, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (2.4ms)[0m  CREATE TABLE "booking_templates" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "amount" varchar(255), "credit_account_id" integer, "debit_account_id" integer, "comments" text, "created_at" datetime, "updated_at" datetime, "code" varchar(255), "matcher" varchar(255), "amount_relates_to" varchar(255), "type" varchar(255), "charge_rate_code" varchar(255)) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("booking_templates")[0m
+  [1m[35m (2.8ms)[0m  CREATE INDEX "index_booking_templates_on_credit_account_id" ON "booking_templates" ("credit_account_id")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("booking_templates")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_booking_templates_on_credit_account_id')
+  [1m[36m (1.2ms)[0m  [1mCREATE INDEX "index_booking_templates_on_debit_account_id" ON "booking_templates" ("debit_account_id")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("booking_templates")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_booking_templates_on_debit_account_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_booking_templates_on_credit_account_id')
+  [1m[36m (1.4ms)[0m  [1mCREATE INDEX "index_booking_templates_on_type" ON "booking_templates" ("type")[0m
+  [1m[35m (2.4ms)[0m  CREATE TABLE "bookings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(100), "amount" decimal(10,2), "credit_account_id" integer, "debit_account_id" integer, "value_date" date, "comments" text, "scan" varchar(255), "debit_currency" varchar(255) DEFAULT 'CHF', "credit_currency" varchar(255) DEFAULT 'CHF', "exchange_rate" float DEFAULT 1.0, "created_at" datetime, "updated_at" datetime, "reference_id" integer, "reference_type" varchar(255), "code" integer) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("bookings")[0m
+  [1m[35m (1.5ms)[0m  CREATE INDEX "index_bookings_on_credit_account_id" ON "bookings" ("credit_account_id")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("bookings")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_bookings_on_credit_account_id')
+  [1m[36m (2.8ms)[0m  [1mCREATE INDEX "index_bookings_on_debit_account_id" ON "bookings" ("debit_account_id")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("bookings")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_bookings_on_debit_account_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_bookings_on_credit_account_id')
+  [1m[36m (1.9ms)[0m  [1mCREATE INDEX "index_bookings_on_reference_id_and_reference_type" ON "bookings" ("reference_id", "reference_type")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("bookings")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_bookings_on_reference_id_and_reference_type')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_bookings_on_debit_account_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_bookings_on_credit_account_id')[0m
+  [1m[35m (2.4ms)[0m  CREATE INDEX "index_bookings_on_value_date" ON "bookings" ("value_date")
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "charge_rates" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "code" varchar(255), "rate" decimal(10,2), "duration_from" date, "duration_to" date, "created_at" datetime, "updated_at" datetime, "person_id" integer, "relative" boolean) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("charge_rates")
+  [1m[36m (1.2ms)[0m  [1mCREATE INDEX "index_charge_rates_on_person_id" ON "charge_rates" ("person_id")[0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "civil_statuses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (2.4ms)[0m  [1mCREATE TABLE "days" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime, "updated_at" datetime, "date" date, "cash" decimal(10,2) DEFAULT 0.0, "card_turnover" decimal(10,2) DEFAULT 0.0, "gross_turnover" decimal(10,2) DEFAULT 0.0, "net_turnover" decimal(10,2) DEFAULT 0.0, "client_count" integer DEFAULT 0, "product_count" integer DEFAULT 0, "expenses" decimal(10,2) DEFAULT 0.0, "credit_turnover" decimal(10,2) DEFAULT 0.0, "discount" decimal(10,2) DEFAULT 0.0) [0m
+  [1m[35m (2.7ms)[0m  CREATE TABLE "employments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "duration_from" date, "duration_to" date, "temporary" boolean, "hourly_paid" boolean, "daily_workload" decimal(10,2), "employee_id" integer, "employer_id" integer, "created_at" datetime, "updated_at" datetime, "remarks" text, "salary_amount" decimal(10,2), "kids" integer, "workload" decimal(10,2), "overtime_premium" decimal(10,0), "holiday_premium" decimal(10,0), "sunday_premium" decimal(10,0), "night_premium" decimal(10,0)) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("employments")[0m
+  [1m[35m (3.3ms)[0m  CREATE INDEX "index_employments_on_employee_id" ON "employments" ("employee_id")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("employments")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_employments_on_employee_id')
+  [1m[36m (2.7ms)[0m  [1mCREATE INDEX "index_employments_on_employer_id" ON "employments" ("employer_id")[0m
+  [1m[35m (2.4ms)[0m  CREATE TABLE "esr_files" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "file" varchar(255), "created_at" datetime, "updated_at" datetime, "remarks" text) 
+  [1m[36m (3.0ms)[0m  [1mCREATE TABLE "esr_records" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "bank_pc_id" varchar(255), "reference" varchar(255), "amount" decimal(8,2), "payment_reference" varchar(255), "payment_date" date, "transaction_date" date, "value_date" date, "microfilm_nr" varchar(255), "reject_code" varchar(255), "reserved" varchar(255), "payment_tax" varchar(255), "created_at" datetime, "updated_at" datetime, "esr_file_id" integer, "booking_id" integer, "invoice_id" integer, "remarks" text, "state" varchar(255) NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("esr_records")
+  [1m[36m (2.2ms)[0m  [1mCREATE INDEX "index_esr_records_on_booking_id" ON "esr_records" ("booking_id")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("esr_records")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_esr_records_on_booking_id')[0m
+  [1m[35m (2.4ms)[0m  CREATE INDEX "index_esr_records_on_esr_file_id" ON "esr_records" ("esr_file_id")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("esr_records")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_esr_records_on_esr_file_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_esr_records_on_booking_id')[0m
+  [1m[35m (2.4ms)[0m  CREATE INDEX "index_esr_records_on_invoice_id" ON "esr_records" ("invoice_id")
+  [1m[36m (2.6ms)[0m  [1mCREATE TABLE "invoices" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "customer_id" integer, "company_id" integer, "due_date" date, "state" varchar(255), "created_at" datetime, "updated_at" datetime, "title" varchar(255), "remarks" text, "amount" decimal(10,2), "value_date" date, "type" varchar(255), "code" varchar(255), "duration_from" date, "duration_to" date, "text" text, "reminder_due_date" date, "second_reminder_due_date" date, "third_reminder_due_date" date) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("invoices")
+  [1m[36m (3.0ms)[0m  [1mCREATE INDEX "index_invoices_on_company_id" ON "invoices" ("company_id")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("invoices")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_invoices_on_company_id')[0m
+  [1m[35m (2.0ms)[0m  CREATE INDEX "index_invoices_on_customer_id" ON "invoices" ("customer_id")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("invoices")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_invoices_on_customer_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_invoices_on_company_id')[0m
+  [1m[35m (1.5ms)[0m  CREATE INDEX "index_invoices_on_state" ON "invoices" ("state")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("invoices")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_invoices_on_state')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_invoices_on_customer_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_invoices_on_company_id')
+  [1m[36m (1.5ms)[0m  [1mCREATE INDEX "index_invoices_on_type" ON "invoices" ("type")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("invoices")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_invoices_on_type')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_invoices_on_state')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_invoices_on_customer_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_invoices_on_company_id')
+  [1m[36m (1.4ms)[0m  [1mCREATE INDEX "index_invoices_on_value_date" ON "invoices" ("value_date")[0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "line_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "times" decimal(10,2), "price" decimal(10,2), "code" varchar(255), "title" varchar(255), "description" varchar(255), "item_id" integer, "item_type" varchar(255), "type" varchar(255), "invoice_id" integer, "created_at" datetime, "updated_at" datetime, "date" date, "quantity" varchar(255) DEFAULT 'x', "vat_rate_code" varchar(255), "contra_account_id" integer) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("line_items")[0m
+  [1m[35m (2.3ms)[0m  CREATE INDEX "index_line_items_on_contra_account_id" ON "line_items" ("contra_account_id")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("line_items")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_line_items_on_contra_account_id')
+  [1m[36m (2.4ms)[0m  [1mCREATE INDEX "index_line_items_on_invoice_id" ON "line_items" ("invoice_id")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("line_items")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_line_items_on_invoice_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_line_items_on_contra_account_id')
+  [1m[36m (2.7ms)[0m  [1mCREATE INDEX "index_line_items_on_item_id_and_item_type" ON "line_items" ("item_id", "item_type")[0m
+  [1m[35m (3.2ms)[0m  CREATE TABLE "notes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "content" text, "user_id" integer, "note_of_sth_id" integer, "note_of_sth_type" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (2.1ms)[0m  [1mCREATE TABLE "people" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime, "updated_at" datetime, "type" varchar(255), "date_of_birth" date, "date_of_death" date, "sex" integer, "code" varchar(255), "social_security_nr" varchar(255), "social_security_nr_12" varchar(255), "civil_status_id" integer, "religion_id" integer) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("people")
+  [1m[36m (1.8ms)[0m  [1mCREATE INDEX "index_people_on_type" ON "people" ("type")[0m
+  [1m[35m (2.2ms)[0m  CREATE TABLE "phone_numbers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar(50), "phone_number_type" varchar(50), "vcard_id" integer, "object_id" integer, "object_type" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("phone_numbers")[0m
+  [1m[35m (3.0ms)[0m  CREATE INDEX "index_phone_numbers_on_object_id_and_object_type" ON "phone_numbers" ("object_id", "object_type")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("phone_numbers")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_phone_numbers_on_object_id_and_object_type')
+  [1m[36m (1.8ms)[0m  [1mCREATE INDEX "index_phone_numbers_on_phone_number_type" ON "phone_numbers" ("phone_number_type")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("phone_numbers")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_phone_numbers_on_phone_number_type')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_phone_numbers_on_object_id_and_object_type')
+  [1m[36m (3.3ms)[0m  [1mCREATE INDEX "phone_numbers_vcard_id_index" ON "phone_numbers" ("vcard_id")[0m
+  [1m[35m (2.7ms)[0m  CREATE TABLE "products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL) 
+  [1m[36m (2.5ms)[0m  [1mCREATE TABLE "project_states" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (3.2ms)[0m  CREATE TABLE "projects" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "comment" text, "duration_from" date, "duration_to" date, "project_state_id" integer, "client_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (2.3ms)[0m  [1mCREATE TABLE "religions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (2.8ms)[0m  CREATE TABLE "roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("roles")[0m
+  [1m[35m (2.2ms)[0m  CREATE INDEX "index_roles_on_name" ON "roles" ("name")
+  [1m[36m (2.5ms)[0m  [1mCREATE TABLE "roles_users" ("role_id" integer, "user_id" integer) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("roles_users")
+  [1m[36m (1.0ms)[0m  [1mCREATE INDEX "index_roles_users_on_role_id" ON "roles_users" ("role_id")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("roles_users")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_roles_users_on_role_id')[0m
+  [1m[35m (3.1ms)[0m  CREATE INDEX "index_roles_users_on_user_id" ON "roles_users" ("user_id")
+  [1m[36m (3.2ms)[0m  [1mCREATE TABLE "stocks" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "remarks" text, "amount" decimal(10,2), "state" varchar(255), "purchase_invoice_id" integer, "created_at" datetime, "updated_at" datetime, "selling_invoice_id" integer) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("stocks")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_assets_on_purchase_invoice_id" ON "stocks" ("purchase_invoice_id")[0m
+SQLite3::SQLException: index index_assets_on_purchase_invoice_id already exists: CREATE  INDEX "index_assets_on_purchase_invoice_id" ON "stocks" ("purchase_invoice_id")
+  [1m[36m (0.4ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+  [1m[35m (317.1ms)[0m  DROP DATABASE IF EXISTS `bookyt_test`
+  [1m[36m (0.5ms)[0m  [1mCREATE DATABASE `bookyt_test` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`[0m
+  [1m[35m (281.0ms)[0m  CREATE TABLE `account_types` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(100), `title` varchar(100), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (129.8ms)[0m  [1mCREATE INDEX `index_account_types_on_name` ON `account_types` (`name`)[0m
+  [1m[35m (116.9ms)[0m  CREATE TABLE `accounts` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(100), `parent_id` int(11), `account_type_id` int(11), `number` varchar(255), `code` varchar(255), `type` varchar(255), `holder_id` int(11), `holder_type` varchar(255), `bank_id` int(11), `esr_id` int(11), `pc_id` varchar(255), `created_at` datetime, `updated_at` datetime, `iban` varchar(255)) ENGINE=InnoDB
+  [1m[36m (188.2ms)[0m  [1mCREATE INDEX `index_accounts_on_account_type_id` ON `accounts` (`account_type_id`)[0m
+  [1m[35m (165.3ms)[0m  CREATE INDEX `index_accounts_on_bank_id` ON `accounts` (`bank_id`)
+  [1m[36m (136.2ms)[0m  [1mCREATE INDEX `index_accounts_on_code` ON `accounts` (`code`)[0m
+  [1m[35m (115.1ms)[0m  CREATE INDEX `index_accounts_on_holder_id_and_holder_type` ON `accounts` (`holder_id`, `holder_type`)
+  [1m[36m (133.8ms)[0m  [1mCREATE INDEX `index_accounts_on_type` ON `accounts` (`type`)[0m
+  [1m[35m (134.2ms)[0m  CREATE TABLE `activities` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `date` date, `duration_from` datetime, `duration_to` datetime, `person_id` int(11), `project_id` int(11), `comment` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (130.7ms)[0m  [1mCREATE TABLE `addresses` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `post_office_box` varchar(50), `extended_address` varchar(50), `street_address` varchar(50), `locality` varchar(50), `region` varchar(50), `postal_code` varchar(50), `country_name` varchar(50), `vcard_id` int(11), `address_type` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (113.7ms)[0m  CREATE INDEX `addresses_vcard_id_index` ON `addresses` (`vcard_id`)
+  [1m[36m (110.8ms)[0m  [1mCREATE TABLE `assets` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `remarks` text, `amount` decimal(10,2), `state` varchar(255), `purchase_invoice_id` int(11), `created_at` datetime, `updated_at` datetime, `selling_invoice_id` int(11)) ENGINE=InnoDB[0m
+  [1m[35m (129.2ms)[0m  CREATE INDEX `index_assets_on_purchase_invoice_id` ON `assets` (`purchase_invoice_id`)
+  [1m[36m (116.1ms)[0m  [1mCREATE INDEX `index_assets_on_selling_invoice_id` ON `assets` (`selling_invoice_id`)[0m
+  [1m[35m (117.2ms)[0m  CREATE INDEX `index_assets_on_state` ON `assets` (`state`)
+  [1m[36m (109.7ms)[0m  [1mCREATE TABLE `attachments` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `file` varchar(255), `created_at` datetime, `updated_at` datetime, `object_id` int(11), `object_type` varchar(255), `code` varchar(255)) ENGINE=InnoDB[0m
+  [1m[35m (122.2ms)[0m  CREATE INDEX `index_attachments_on_object_id_and_object_type` ON `attachments` (`object_id`, `object_type`)
+  [1m[36m (111.1ms)[0m  [1mCREATE TABLE `banks` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `vcard_id` int(11), `created_at` datetime, `updated_at` datetime, `swift` varchar(255), `clearing` varchar(255)) ENGINE=InnoDB[0m
+  [1m[35m (146.2ms)[0m  CREATE INDEX `index_banks_on_vcard_id` ON `banks` (`vcard_id`)
+  [1m[36m (101.9ms)[0m  [1mCREATE TABLE `booking_imports` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `csv_file_name` varchar(255), `csv_content_type` varchar(255), `csv_file_size` int(11), `csv_updated_at` datetime, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (138.8ms)[0m  CREATE TABLE `booking_templates` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `amount` varchar(255), `credit_account_id` int(11), `debit_account_id` int(11), `comments` text, `created_at` datetime, `updated_at` datetime, `code` varchar(255), `matcher` varchar(255), `amount_relates_to` varchar(255), `type` varchar(255), `charge_rate_code` varchar(255)) ENGINE=InnoDB
+  [1m[36m (112.0ms)[0m  [1mCREATE INDEX `index_booking_templates_on_credit_account_id` ON `booking_templates` (`credit_account_id`)[0m
+  [1m[35m (117.4ms)[0m  CREATE INDEX `index_booking_templates_on_debit_account_id` ON `booking_templates` (`debit_account_id`)
+  [1m[36m (133.6ms)[0m  [1mCREATE INDEX `index_booking_templates_on_type` ON `booking_templates` (`type`)[0m
+  [1m[35m (129.9ms)[0m  CREATE TABLE `bookings` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(100), `amount` decimal(10,2), `credit_account_id` int(11), `debit_account_id` int(11), `value_date` date, `comments` text, `scan` varchar(255), `debit_currency` varchar(255) DEFAULT 'CHF', `credit_currency` varchar(255) DEFAULT 'CHF', `exchange_rate` float DEFAULT 1.0, `created_at` datetime, `updated_at` datetime, `reference_id` int(11), `reference_type` varchar(255), `code` int(11)) ENGINE=InnoDB
+  [1m[36m (128.7ms)[0m  [1mCREATE INDEX `index_bookings_on_credit_account_id` ON `bookings` (`credit_account_id`)[0m
+  [1m[35m (99.9ms)[0m  CREATE INDEX `index_bookings_on_debit_account_id` ON `bookings` (`debit_account_id`)
+  [1m[36m (125.5ms)[0m  [1mCREATE INDEX `index_bookings_on_reference_id_and_reference_type` ON `bookings` (`reference_id`, `reference_type`)[0m
+  [1m[35m (117.6ms)[0m  CREATE INDEX `index_bookings_on_value_date` ON `bookings` (`value_date`)
+  [1m[36m (151.3ms)[0m  [1mCREATE TABLE `charge_rates` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `code` varchar(255), `rate` decimal(10,2), `duration_from` date, `duration_to` date, `created_at` datetime, `updated_at` datetime, `person_id` int(11), `relative` tinyint(1)) ENGINE=InnoDB[0m
+  [1m[35m (137.6ms)[0m  CREATE INDEX `index_charge_rates_on_person_id` ON `charge_rates` (`person_id`)
+  [1m[36m (119.3ms)[0m  [1mCREATE TABLE `civil_statuses` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (129.8ms)[0m  CREATE TABLE `days` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `created_at` datetime, `updated_at` datetime, `date` date, `cash` decimal(10,2) DEFAULT 0.0, `card_turnover` decimal(10,2) DEFAULT 0.0, `gross_turnover` decimal(10,2) DEFAULT 0.0, `net_turnover` decimal(10,2) DEFAULT 0.0, `client_count` int(11) DEFAULT 0, `product_count` int(11) DEFAULT 0, `expenses` decimal(10,2) DEFAULT 0.0, `credit_turnover` decimal(10,2) DEFAULT 0.0, `discount` decimal(10,2) DEFAULT 0.0) ENGINE=InnoDB
+  [1m[36m (122.6ms)[0m  [1mCREATE TABLE `employments` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `duration_from` date, `duration_to` date, `temporary` tinyint(1), `hourly_paid` tinyint(1), `daily_workload` decimal(10,2), `employee_id` int(11), `employer_id` int(11), `created_at` datetime, `updated_at` datetime, `remarks` text, `salary_amount` decimal(10,2), `kids` int(11), `workload` decimal(10,2), `overtime_premium` decimal(10,0), `holiday_premium` decimal(10,0), `sunday_premium` decimal(10,0), `night_premium` decimal(10,0)) ENGINE=InnoDB[0m
+  [1m[35m (112.1ms)[0m  CREATE INDEX `index_employments_on_employee_id` ON `employments` (`employee_id`)
+  [1m[36m (99.8ms)[0m  [1mCREATE INDEX `index_employments_on_employer_id` ON `employments` (`employer_id`)[0m
+  [1m[35m (110.6ms)[0m  CREATE TABLE `esr_files` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `file` varchar(255), `created_at` datetime, `updated_at` datetime, `remarks` text) ENGINE=InnoDB
+  [1m[36m (113.4ms)[0m  [1mCREATE TABLE `esr_records` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `bank_pc_id` varchar(255), `reference` varchar(255), `amount` decimal(8,2), `payment_reference` varchar(255), `payment_date` date, `transaction_date` date, `value_date` date, `microfilm_nr` varchar(255), `reject_code` varchar(255), `reserved` varchar(255), `payment_tax` varchar(255), `created_at` datetime, `updated_at` datetime, `esr_file_id` int(11), `booking_id` int(11), `invoice_id` int(11), `remarks` text, `state` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (104.4ms)[0m  CREATE INDEX `index_esr_records_on_booking_id` ON `esr_records` (`booking_id`)
+  [1m[36m (142.7ms)[0m  [1mCREATE INDEX `index_esr_records_on_esr_file_id` ON `esr_records` (`esr_file_id`)[0m
+  [1m[35m (347.5ms)[0m  CREATE INDEX `index_esr_records_on_invoice_id` ON `esr_records` (`invoice_id`)
+  [1m[36m (172.2ms)[0m  [1mCREATE TABLE `invoices` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `customer_id` int(11), `company_id` int(11), `due_date` date, `state` varchar(255), `created_at` datetime, `updated_at` datetime, `title` varchar(255), `remarks` text, `amount` decimal(10,2), `value_date` date, `type` varchar(255), `code` varchar(255), `duration_from` date, `duration_to` date, `text` text, `reminder_due_date` date, `second_reminder_due_date` date, `third_reminder_due_date` date) ENGINE=InnoDB[0m
+  [1m[35m (145.0ms)[0m  CREATE INDEX `index_invoices_on_company_id` ON `invoices` (`company_id`)
+  [1m[36m (160.2ms)[0m  [1mCREATE INDEX `index_invoices_on_customer_id` ON `invoices` (`customer_id`)[0m
+  [1m[35m (125.2ms)[0m  CREATE INDEX `index_invoices_on_state` ON `invoices` (`state`)
+  [1m[36m (116.9ms)[0m  [1mCREATE INDEX `index_invoices_on_type` ON `invoices` (`type`)[0m
+  [1m[35m (122.4ms)[0m  CREATE INDEX `index_invoices_on_value_date` ON `invoices` (`value_date`)
+  [1m[36m (135.3ms)[0m  [1mCREATE TABLE `line_items` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `times` decimal(10,2), `price` decimal(10,2), `code` varchar(255), `title` varchar(255), `description` varchar(255), `item_id` int(11), `item_type` varchar(255), `type` varchar(255), `invoice_id` int(11), `created_at` datetime, `updated_at` datetime, `date` date, `quantity` varchar(255) DEFAULT 'x', `vat_rate_code` varchar(255), `contra_account_id` int(11)) ENGINE=InnoDB[0m
+  [1m[35m (136.7ms)[0m  CREATE INDEX `index_line_items_on_contra_account_id` ON `line_items` (`contra_account_id`)
+  [1m[36m (126.2ms)[0m  [1mCREATE INDEX `index_line_items_on_invoice_id` ON `line_items` (`invoice_id`)[0m
+  [1m[35m (123.6ms)[0m  CREATE INDEX `index_line_items_on_item_id_and_item_type` ON `line_items` (`item_id`, `item_type`)
+  [1m[36m (135.4ms)[0m  [1mCREATE TABLE `notes` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `content` text, `user_id` int(11), `note_of_sth_id` int(11), `note_of_sth_type` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (122.9ms)[0m  CREATE TABLE `people` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `created_at` datetime, `updated_at` datetime, `type` varchar(255), `date_of_birth` date, `date_of_death` date, `sex` int(11), `code` varchar(255), `social_security_nr` varchar(255), `social_security_nr_12` varchar(255), `civil_status_id` int(11), `religion_id` int(11)) ENGINE=InnoDB
+  [1m[36m (122.7ms)[0m  [1mCREATE INDEX `index_people_on_type` ON `people` (`type`)[0m
+  [1m[35m (117.6ms)[0m  CREATE TABLE `phone_numbers` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `number` varchar(50), `phone_number_type` varchar(50), `vcard_id` int(11), `object_id` int(11), `object_type` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (118.4ms)[0m  [1mCREATE INDEX `index_phone_numbers_on_object_id_and_object_type` ON `phone_numbers` (`object_id`, `object_type`)[0m
+  [1m[35m (111.2ms)[0m  CREATE INDEX `index_phone_numbers_on_phone_number_type` ON `phone_numbers` (`phone_number_type`)
+  [1m[36m (124.4ms)[0m  [1mCREATE INDEX `phone_numbers_vcard_id_index` ON `phone_numbers` (`vcard_id`)[0m
+  [1m[35m (151.0ms)[0m  CREATE TABLE `products` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY) ENGINE=InnoDB
+  [1m[36m (131.5ms)[0m  [1mCREATE TABLE `project_states` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (112.8ms)[0m  CREATE TABLE `projects` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `comment` text, `duration_from` date, `duration_to` date, `project_state_id` int(11), `client_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (76.3ms)[0m  [1mCREATE TABLE `religions` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (130.4ms)[0m  CREATE TABLE `roles` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (113.0ms)[0m  [1mCREATE INDEX `index_roles_on_name` ON `roles` (`name`)[0m
+  [1m[35m (111.5ms)[0m  CREATE TABLE `roles_users` (`role_id` int(11), `user_id` int(11)) ENGINE=InnoDB
+  [1m[36m (162.3ms)[0m  [1mCREATE INDEX `index_roles_users_on_role_id` ON `roles_users` (`role_id`)[0m
+  [1m[35m (116.7ms)[0m  CREATE INDEX `index_roles_users_on_user_id` ON `roles_users` (`user_id`)
+  [1m[36m (126.4ms)[0m  [1mCREATE TABLE `stocks` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `remarks` text, `amount` decimal(10,2), `state` varchar(255), `purchase_invoice_id` int(11), `created_at` datetime, `updated_at` datetime, `selling_invoice_id` int(11)) ENGINE=InnoDB[0m
+  [1m[35m (137.9ms)[0m  CREATE INDEX `index_assets_on_purchase_invoice_id` ON `stocks` (`purchase_invoice_id`)
+  [1m[36m (115.9ms)[0m  [1mCREATE INDEX `index_assets_on_selling_invoice_id` ON `stocks` (`selling_invoice_id`)[0m
+  [1m[35m (142.7ms)[0m  CREATE INDEX `index_assets_on_state` ON `stocks` (`state`)
+  [1m[36m (126.1ms)[0m  [1mCREATE TABLE `tenants` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `person_id` int(11), `created_at` datetime, `updated_at` datetime, `incorporated_on` date, `fiscal_year_ends_on` date, `vat_number` varchar(255), `use_vesr` tinyint(1), `print_payment_for` tinyint(1)) ENGINE=InnoDB[0m
+  [1m[35m (196.3ms)[0m  CREATE INDEX `index_tenants_on_person_id` ON `tenants` (`person_id`)
+  [1m[36m (180.7ms)[0m  [1mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(128) DEFAULT '' NOT NULL, `password_salt` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `remember_token` varchar(255), `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime, `person_id` int(11), `tenant_id` int(11), `locale` varchar(255)) ENGINE=InnoDB[0m
+  [1m[35m (234.2ms)[0m  CREATE UNIQUE INDEX `index_users_on_email` ON `users` (`email`)
+  [1m[36m (199.8ms)[0m  [1mCREATE INDEX `index_users_on_person_id` ON `users` (`person_id`)[0m
+  [1m[35m (194.4ms)[0m  CREATE UNIQUE INDEX `index_users_on_reset_password_token` ON `users` (`reset_password_token`)
+  [1m[36m (214.0ms)[0m  [1mCREATE INDEX `index_users_on_tenant_id` ON `users` (`tenant_id`)[0m
+  [1m[35m (160.1ms)[0m  CREATE TABLE `vcards` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `full_name` varchar(50), `nickname` varchar(50), `family_name` varchar(50), `given_name` varchar(50), `additional_name` varchar(50), `honorific_prefix` varchar(50), `honorific_suffix` varchar(50), `active` tinyint(1) DEFAULT 1, `object_id` int(11), `object_type` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (161.4ms)[0m  [1mCREATE INDEX `index_vcards_on_object_id_and_object_type` ON `vcards` (`object_id`, `object_type`)[0m
+  [1m[35m (101.5ms)[0m  CREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB
+  [1m[36m (138.6ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [1m[35m (0.2ms)[0m  SELECT version FROM `schema_migrations`
+  [1m[36m (0.4ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20111114134140')[0m
+  [1m[36m (0.2ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+  [1m[36m (56.7ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (275.2ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)
+  [1m[36m (0.2ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+  [1m[35m (0.5ms)[0m  DROP DATABASE IF EXISTS `bookyt_projects_test`
+  [1m[36m (0.2ms)[0m  [1mCREATE DATABASE `bookyt_projects_test` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`[0m
+  [1m[35m (94.2ms)[0m  CREATE TABLE `account_types` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(100), `title` varchar(100), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (129.0ms)[0m  [1mCREATE INDEX `index_account_types_on_name` ON `account_types` (`name`)[0m
+  [1m[35m (86.6ms)[0m  CREATE TABLE `accounts` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(100), `parent_id` int(11), `account_type_id` int(11), `number` varchar(255), `code` varchar(255), `type` varchar(255), `holder_id` int(11), `holder_type` varchar(255), `bank_id` int(11), `esr_id` int(11), `pc_id` varchar(255), `created_at` datetime, `updated_at` datetime, `iban` varchar(255)) ENGINE=InnoDB
+  [1m[36m (135.7ms)[0m  [1mCREATE INDEX `index_accounts_on_account_type_id` ON `accounts` (`account_type_id`)[0m
+  [1m[35m (101.7ms)[0m  CREATE INDEX `index_accounts_on_bank_id` ON `accounts` (`bank_id`)
+  [1m[36m (132.2ms)[0m  [1mCREATE INDEX `index_accounts_on_code` ON `accounts` (`code`)[0m
+  [1m[35m (133.6ms)[0m  CREATE INDEX `index_accounts_on_holder_id_and_holder_type` ON `accounts` (`holder_id`, `holder_type`)
+  [1m[36m (133.4ms)[0m  [1mCREATE INDEX `index_accounts_on_type` ON `accounts` (`type`)[0m
+  [1m[35m (155.5ms)[0m  CREATE TABLE `activities` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `date` date, `duration_from` datetime, `duration_to` datetime, `person_id` int(11), `project_id` int(11), `comment` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (160.1ms)[0m  [1mCREATE TABLE `addresses` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `post_office_box` varchar(50), `extended_address` varchar(50), `street_address` varchar(50), `locality` varchar(50), `region` varchar(50), `postal_code` varchar(50), `country_name` varchar(50), `vcard_id` int(11), `address_type` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (103.9ms)[0m  CREATE INDEX `addresses_vcard_id_index` ON `addresses` (`vcard_id`)
+  [1m[36m (94.5ms)[0m  [1mCREATE TABLE `assets` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `remarks` text, `amount` decimal(10,2), `state` varchar(255), `purchase_invoice_id` int(11), `created_at` datetime, `updated_at` datetime, `selling_invoice_id` int(11)) ENGINE=InnoDB[0m
+  [1m[35m (128.8ms)[0m  CREATE INDEX `index_assets_on_purchase_invoice_id` ON `assets` (`purchase_invoice_id`)
+  [1m[36m (100.9ms)[0m  [1mCREATE INDEX `index_assets_on_selling_invoice_id` ON `assets` (`selling_invoice_id`)[0m
+  [1m[35m (131.4ms)[0m  CREATE INDEX `index_assets_on_state` ON `assets` (`state`)
+  [1m[36m (130.2ms)[0m  [1mCREATE TABLE `attachments` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `file` varchar(255), `created_at` datetime, `updated_at` datetime, `object_id` int(11), `object_type` varchar(255), `code` varchar(255)) ENGINE=InnoDB[0m
+  [1m[35m (136.7ms)[0m  CREATE INDEX `index_attachments_on_object_id_and_object_type` ON `attachments` (`object_id`, `object_type`)
+  [1m[36m (139.7ms)[0m  [1mCREATE TABLE `banks` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `vcard_id` int(11), `created_at` datetime, `updated_at` datetime, `swift` varchar(255), `clearing` varchar(255)) ENGINE=InnoDB[0m
+  [1m[35m (158.5ms)[0m  CREATE INDEX `index_banks_on_vcard_id` ON `banks` (`vcard_id`)
+  [1m[36m (94.3ms)[0m  [1mCREATE TABLE `booking_imports` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `csv_file_name` varchar(255), `csv_content_type` varchar(255), `csv_file_size` int(11), `csv_updated_at` datetime, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (131.1ms)[0m  CREATE TABLE `booking_templates` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `amount` varchar(255), `credit_account_id` int(11), `debit_account_id` int(11), `comments` text, `created_at` datetime, `updated_at` datetime, `code` varchar(255), `matcher` varchar(255), `amount_relates_to` varchar(255), `type` varchar(255), `charge_rate_code` varchar(255)) ENGINE=InnoDB
+  [1m[36m (104.1ms)[0m  [1mCREATE INDEX `index_booking_templates_on_credit_account_id` ON `booking_templates` (`credit_account_id`)[0m
+  [1m[35m (92.3ms)[0m  CREATE INDEX `index_booking_templates_on_debit_account_id` ON `booking_templates` (`debit_account_id`)
+  [1m[36m (141.6ms)[0m  [1mCREATE INDEX `index_booking_templates_on_type` ON `booking_templates` (`type`)[0m
+  [1m[35m (113.1ms)[0m  CREATE TABLE `bookings` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(100), `amount` decimal(10,2), `credit_account_id` int(11), `debit_account_id` int(11), `value_date` date, `comments` text, `scan` varchar(255), `debit_currency` varchar(255) DEFAULT 'CHF', `credit_currency` varchar(255) DEFAULT 'CHF', `exchange_rate` float DEFAULT 1.0, `created_at` datetime, `updated_at` datetime, `reference_id` int(11), `reference_type` varchar(255), `code` int(11)) ENGINE=InnoDB
+  [1m[36m (167.0ms)[0m  [1mCREATE INDEX `index_bookings_on_credit_account_id` ON `bookings` (`credit_account_id`)[0m
+  [1m[35m (100.0ms)[0m  CREATE INDEX `index_bookings_on_debit_account_id` ON `bookings` (`debit_account_id`)
+  [1m[36m (133.1ms)[0m  [1mCREATE INDEX `index_bookings_on_reference_id_and_reference_type` ON `bookings` (`reference_id`, `reference_type`)[0m
+  [1m[35m (134.6ms)[0m  CREATE INDEX `index_bookings_on_value_date` ON `bookings` (`value_date`)
+  [1m[36m (156.8ms)[0m  [1mCREATE TABLE `charge_rates` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `code` varchar(255), `rate` decimal(10,2), `duration_from` date, `duration_to` date, `created_at` datetime, `updated_at` datetime, `person_id` int(11), `relative` tinyint(1)) ENGINE=InnoDB[0m
+  [1m[35m (173.7ms)[0m  CREATE INDEX `index_charge_rates_on_person_id` ON `charge_rates` (`person_id`)
+  [1m[36m (94.0ms)[0m  [1mCREATE TABLE `civil_statuses` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (130.5ms)[0m  CREATE TABLE `days` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `created_at` datetime, `updated_at` datetime, `date` date, `cash` decimal(10,2) DEFAULT 0.0, `card_turnover` decimal(10,2) DEFAULT 0.0, `gross_turnover` decimal(10,2) DEFAULT 0.0, `net_turnover` decimal(10,2) DEFAULT 0.0, `client_count` int(11) DEFAULT 0, `product_count` int(11) DEFAULT 0, `expenses` decimal(10,2) DEFAULT 0.0, `credit_turnover` decimal(10,2) DEFAULT 0.0, `discount` decimal(10,2) DEFAULT 0.0) ENGINE=InnoDB
+  [1m[36m (87.9ms)[0m  [1mCREATE TABLE `employments` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `duration_from` date, `duration_to` date, `temporary` tinyint(1), `hourly_paid` tinyint(1), `daily_workload` decimal(10,2), `employee_id` int(11), `employer_id` int(11), `created_at` datetime, `updated_at` datetime, `remarks` text, `salary_amount` decimal(10,2), `kids` int(11), `workload` decimal(10,2), `overtime_premium` decimal(10,0), `holiday_premium` decimal(10,0), `sunday_premium` decimal(10,0), `night_premium` decimal(10,0)) ENGINE=InnoDB[0m
+  [1m[35m (96.2ms)[0m  CREATE INDEX `index_employments_on_employee_id` ON `employments` (`employee_id`)
+  [1m[36m (107.8ms)[0m  [1mCREATE INDEX `index_employments_on_employer_id` ON `employments` (`employer_id`)[0m
+  [1m[35m (127.0ms)[0m  CREATE TABLE `esr_files` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `file` varchar(255), `created_at` datetime, `updated_at` datetime, `remarks` text) ENGINE=InnoDB
+  [1m[36m (130.4ms)[0m  [1mCREATE TABLE `esr_records` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `bank_pc_id` varchar(255), `reference` varchar(255), `amount` decimal(8,2), `payment_reference` varchar(255), `payment_date` date, `transaction_date` date, `value_date` date, `microfilm_nr` varchar(255), `reject_code` varchar(255), `reserved` varchar(255), `payment_tax` varchar(255), `created_at` datetime, `updated_at` datetime, `esr_file_id` int(11), `booking_id` int(11), `invoice_id` int(11), `remarks` text, `state` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (103.4ms)[0m  CREATE INDEX `index_esr_records_on_booking_id` ON `esr_records` (`booking_id`)
+  [1m[36m (100.7ms)[0m  [1mCREATE INDEX `index_esr_records_on_esr_file_id` ON `esr_records` (`esr_file_id`)[0m
+  [1m[35m (132.7ms)[0m  CREATE INDEX `index_esr_records_on_invoice_id` ON `esr_records` (`invoice_id`)
+  [1m[36m (127.7ms)[0m  [1mCREATE TABLE `invoices` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `customer_id` int(11), `company_id` int(11), `due_date` date, `state` varchar(255), `created_at` datetime, `updated_at` datetime, `title` varchar(255), `remarks` text, `amount` decimal(10,2), `value_date` date, `type` varchar(255), `code` varchar(255), `duration_from` date, `duration_to` date, `text` text, `reminder_due_date` date, `second_reminder_due_date` date, `third_reminder_due_date` date) ENGINE=InnoDB[0m
+  [1m[35m (129.3ms)[0m  CREATE INDEX `index_invoices_on_company_id` ON `invoices` (`company_id`)
+  [1m[36m (100.2ms)[0m  [1mCREATE INDEX `index_invoices_on_customer_id` ON `invoices` (`customer_id`)[0m
+  [1m[35m (125.4ms)[0m  CREATE INDEX `index_invoices_on_state` ON `invoices` (`state`)
+  [1m[36m (117.1ms)[0m  [1mCREATE INDEX `index_invoices_on_type` ON `invoices` (`type`)[0m
+  [1m[35m (123.2ms)[0m  CREATE INDEX `index_invoices_on_value_date` ON `invoices` (`value_date`)
+  [1m[36m (159.4ms)[0m  [1mCREATE TABLE `line_items` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `times` decimal(10,2), `price` decimal(10,2), `code` varchar(255), `title` varchar(255), `description` varchar(255), `item_id` int(11), `item_type` varchar(255), `type` varchar(255), `invoice_id` int(11), `created_at` datetime, `updated_at` datetime, `date` date, `quantity` varchar(255) DEFAULT 'x', `vat_rate_code` varchar(255), `contra_account_id` int(11)) ENGINE=InnoDB[0m
+  [1m[35m (162.1ms)[0m  CREATE INDEX `index_line_items_on_contra_account_id` ON `line_items` (`contra_account_id`)
+  [1m[36m (99.7ms)[0m  [1mCREATE INDEX `index_line_items_on_invoice_id` ON `line_items` (`invoice_id`)[0m
+  [1m[35m (133.3ms)[0m  CREATE INDEX `index_line_items_on_item_id_and_item_type` ON `line_items` (`item_id`, `item_type`)
+  [1m[36m (126.9ms)[0m  [1mCREATE TABLE `notes` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `content` text, `user_id` int(11), `note_of_sth_id` int(11), `note_of_sth_type` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (129.9ms)[0m  CREATE TABLE `people` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `created_at` datetime, `updated_at` datetime, `type` varchar(255), `date_of_birth` date, `date_of_death` date, `sex` int(11), `code` varchar(255), `social_security_nr` varchar(255), `social_security_nr_12` varchar(255), `civil_status_id` int(11), `religion_id` int(11)) ENGINE=InnoDB
+  [1m[36m (105.4ms)[0m  [1mCREATE INDEX `index_people_on_type` ON `people` (`type`)[0m
+  [1m[35m (110.2ms)[0m  CREATE TABLE `phone_numbers` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `number` varchar(50), `phone_number_type` varchar(50), `vcard_id` int(11), `object_id` int(11), `object_type` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (137.7ms)[0m  [1mCREATE INDEX `index_phone_numbers_on_object_id_and_object_type` ON `phone_numbers` (`object_id`, `object_type`)[0m
+  [1m[35m (100.8ms)[0m  CREATE INDEX `index_phone_numbers_on_phone_number_type` ON `phone_numbers` (`phone_number_type`)
+  [1m[36m (132.0ms)[0m  [1mCREATE INDEX `phone_numbers_vcard_id_index` ON `phone_numbers` (`vcard_id`)[0m
+  [1m[35m (126.6ms)[0m  CREATE TABLE `products` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY) ENGINE=InnoDB
+  [1m[36m (131.6ms)[0m  [1mCREATE TABLE `project_states` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (138.8ms)[0m  CREATE TABLE `projects` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `comment` text, `duration_from` date, `duration_to` date, `project_state_id` int(11), `client_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (154.3ms)[0m  [1mCREATE TABLE `religions` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (95.2ms)[0m  CREATE TABLE `roles` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (106.1ms)[0m  [1mCREATE INDEX `index_roles_on_name` ON `roles` (`name`)[0m
+  [1m[35m (100.5ms)[0m  CREATE TABLE `roles_users` (`role_id` int(11), `user_id` int(11)) ENGINE=InnoDB
+  [1m[36m (145.8ms)[0m  [1mCREATE INDEX `index_roles_users_on_role_id` ON `roles_users` (`role_id`)[0m
+  [1m[35m (108.0ms)[0m  CREATE INDEX `index_roles_users_on_user_id` ON `roles_users` (`user_id`)
+  [1m[36m (159.5ms)[0m  [1mCREATE TABLE `stocks` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `remarks` text, `amount` decimal(10,2), `state` varchar(255), `purchase_invoice_id` int(11), `created_at` datetime, `updated_at` datetime, `selling_invoice_id` int(11)) ENGINE=InnoDB[0m
+  [1m[35m (176.3ms)[0m  CREATE INDEX `index_assets_on_purchase_invoice_id` ON `stocks` (`purchase_invoice_id`)
+  [1m[36m (107.4ms)[0m  [1mCREATE INDEX `index_assets_on_selling_invoice_id` ON `stocks` (`selling_invoice_id`)[0m
+  [1m[35m (136.0ms)[0m  CREATE INDEX `index_assets_on_state` ON `stocks` (`state`)
+  [1m[36m (150.5ms)[0m  [1mCREATE TABLE `tenants` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `person_id` int(11), `created_at` datetime, `updated_at` datetime, `incorporated_on` date, `fiscal_year_ends_on` date, `vat_number` varchar(255), `use_vesr` tinyint(1), `print_payment_for` tinyint(1)) ENGINE=InnoDB[0m
+  [1m[35m (159.9ms)[0m  CREATE INDEX `index_tenants_on_person_id` ON `tenants` (`person_id`)
+  [1m[36m (104.9ms)[0m  [1mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(128) DEFAULT '' NOT NULL, `password_salt` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `remember_token` varchar(255), `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime, `person_id` int(11), `tenant_id` int(11), `locale` varchar(255)) ENGINE=InnoDB[0m
+  [1m[35m (129.8ms)[0m  CREATE UNIQUE INDEX `index_users_on_email` ON `users` (`email`)
+  [1m[36m (107.5ms)[0m  [1mCREATE INDEX `index_users_on_person_id` ON `users` (`person_id`)[0m
+  [1m[35m (210.7ms)[0m  CREATE UNIQUE INDEX `index_users_on_reset_password_token` ON `users` (`reset_password_token`)
+  [1m[36m (289.2ms)[0m  [1mCREATE INDEX `index_users_on_tenant_id` ON `users` (`tenant_id`)[0m
+  [1m[35m (341.8ms)[0m  CREATE TABLE `vcards` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `full_name` varchar(50), `nickname` varchar(50), `family_name` varchar(50), `given_name` varchar(50), `additional_name` varchar(50), `honorific_prefix` varchar(50), `honorific_suffix` varchar(50), `active` tinyint(1) DEFAULT 1, `object_id` int(11), `object_type` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (198.1ms)[0m  [1mCREATE INDEX `index_vcards_on_object_id_and_object_type` ON `vcards` (`object_id`, `object_type`)[0m
+  [1m[35m (250.5ms)[0m  CREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB
+  [1m[36m (180.7ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM `schema_migrations`
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20111114134140')[0m

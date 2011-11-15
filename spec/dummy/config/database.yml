@@ -1,0 +1,27 @@
+# MySQL
+mysql: &mysql
+  adapter:  mysql2
+  pool:     5
+  timeout:  5000
+  host:     localhost
+  username: root
+  password: simerom
+  encoding: utf8 
+
+# Environments
+# ============
+production:
+  database: bookyt_projects_development
+  <<: *mysql
+
+development:
+  database: bookyt_projects_development
+  <<: *mysql
+
+demo:
+  database: bookyt_projects_demo
+  <<: *sqlite
+
+test:
+  database: bookyt_projects_test
+  <<: *mysql
