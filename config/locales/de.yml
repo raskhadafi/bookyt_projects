@@ -5,6 +5,7 @@ de:
       project_state:      Projektstatus
       activity:           Aktivität
       timesheet:          Stundenrapport
+      batch_activity:     Tagesrapport
     attributes:
       project:
         name:             Bezeichnung
