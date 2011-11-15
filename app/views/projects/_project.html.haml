@@ -1,0 +1,7 @@
+%tr
+  %td= link_to project.name, project, {'data-href-container' => 'tr'}
+  %td= project.client
+  %td= [project.duration_from, project.duration_to].compact.join(' - ')
+  %td.action-links
+    = list_link_for(:edit, project)
+    = list_link_for(:delete, project)
