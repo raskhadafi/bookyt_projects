@@ -2,23 +2,24 @@
   = f.inputs do
     = f.input :date, :as => :date_field, :label => t('attributes.date'), :input_html => {:value => @date}
 
-  %table{:style => 'width: 100%'}
-    %thead
-      %th= t_attr :person, Activity
-      %th= t_attr :project, Activity
-      %th{:style => 'width: 5em'}= t_attr :duration, Activity
-      %th= t_attr :comment, Activity
+  = f.inputs do
+    %table{:style => 'width: 100%'}
+      %thead
+        %th= t_attr :person, Activity
+        %th= t_attr :project, Activity
+        %th{:style => 'width: 5em'}= t_attr :duration, Activity
+        %th= t_attr :comment, Activity
 
-    %tbody
-    - for activity in @activities
-      %tr
-        = fields_for 'activities[]', activity do |a|
-          %td 
-            = link_to activity.person, activity.person
-            = a.hidden_field :person_id
-          %td= a.select :project_id, Project.all.map{|project| [project.to_s, project.id]}, {:prompt => t_select_prompt(Project)}
-          %td= a.text_field :hours
-          %td= a.text_field :comment
+      %tbody
+      - for activity in @activities
+        %tr
+          = fields_for 'activities[]', activity do |a|
+            %td
+              = link_to activity.person, activity.person
+              = a.hidden_field :person_id
+            %td= a.select :project_id, Project.all.map{|project| [project.to_s, project.id]}, {:prompt => t_select_prompt(Project)}
+            %td= a.text_field :hours
+            %td= a.text_field :comment
 
   = f.buttons do
     = f.commit_button
