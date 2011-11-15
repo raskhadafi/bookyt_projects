@@ -2,13 +2,16 @@
   = f.inputs do
     = f.input :project, :as => :combobox
     = f.input :person, :as => :combobox
+
   = f.inputs do
     = f.input :date, :as => :date_field, :required => true
     = f.input :duration_from, :as => :hour_field
     = f.input :duration_to, :as => :hour_field
     = f.input :hours
     = f.input :minutes
+
   = f.inputs do
     = f.input :comment
+
   = f.buttons do
     = f.commit_button
