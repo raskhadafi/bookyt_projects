@@ -8,18 +8,6 @@ gemspec
 # =====
 gem 'rails', '~> 3.1.0'
 
-# Date/Time handling
-# ==================
-gem 'validates_timeliness'
-
-# Access Control
-# ==============
-gem 'devise'
-gem 'cancan'
-
-gem 'inherited_resources', '1.2.2'
-gem 'has_scope'
-
 # Development
 # ===========
 group :development do
@@ -50,3 +38,15 @@ end
 
 # Matchers/Helpers
 gem 'shoulda'
+
+# Date/Time handling
+# ==================
+gem 'validates_timeliness'
+
+# Access Control
+# ==============
+gem 'devise'
+gem 'cancan'
+
+gem 'inherited_resources', '1.2.2'
+gem 'has_scope'
