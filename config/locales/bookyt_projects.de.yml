@@ -39,6 +39,9 @@ de:
   bookyt:
     projects:
       minutes:            "%{duration} Minuten"
+    main_navigation:
+      salaries: Löhne
+      projects: Projekte
 
   # Titles
   timesheets:
