@@ -8,10 +8,7 @@
     %th.number= t_attr :overall_overtime, Activity
 
   - overall_overtime = 0
-  - @employment = @employee.employments.current
-  - days = (Date.today.beginning_of_month..Date.today.end_of_month).to_a
-  - @work_days = days.map{|day| WorkDay.new(day, @employment)}
-  - @work_days.each do |day|
+  - WorkDay.for_month(@employee).each do |day|
     - overall_overtime += day.overtime
     %tr{:style => "opacity: #{day.hours_due == 0.0 ? 0.4 : 1}; #{day.overtime < 0.0 ? 'color: #B94A48' : ''}"}
       %td= day.date
