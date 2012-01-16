@@ -53,3 +53,5 @@ de:
       title: Zeit erfassen
     list:
       title: Aktivitäten
+    timesheet:
+      title: Stundenrapport
