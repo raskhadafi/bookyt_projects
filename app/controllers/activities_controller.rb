@@ -1,5 +1,6 @@
 class ActivitiesController < AuthorizedController
   belongs_to :project, :optional => true
+  belongs_to :person, :optional => true
 
   has_scope :by_date
 
