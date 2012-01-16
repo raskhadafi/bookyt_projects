@@ -5,11 +5,16 @@
   font-weight: bold
 
 // Timesheets
-.due_hours
-  background-color: #D1EED1 // block-message success
-.overtime
-  background-color: #DDF4FB // block-message info
-.undertime
-  background-color: #FDDFDE // block-message error
-.free, .future
-  color: #BFBFBF // subtitle
+tr
+  &.due_hours
+    background-color: #D1EED1 // block-message success
+  &.overtime
+    background-color: #DDF4FB // block-message info
+  &.undertime
+    background-color: #FDDFDE // block-message error
+  &.free, &.future
+    color: #BFBFBF // subtitle
+
+tr.future
+  td.overtime, td.overall-overtime
+    color: transparent
