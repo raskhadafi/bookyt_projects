@@ -8,7 +8,10 @@
   - overall_overtime = 0
   - WorkDay.for_month(@employee).each do |day|
     - overall_overtime += day.overtime
-    %tr{:class => work_day_classes(day)}
+    - activities = @employee.activities.where(:date => day.date)
+    - tr_params = {:class => work_day_classes(day)}
+    - tr_params.merge!(:rel => 'popover', 'data-content' => h(render 'activities_popover', :activities => activities), 'data-original-title' => 'Aktivitäten', 'data-html' => 'true') unless activities.empty?
+    %tr{tr_params}
       %td= l(day.date, :format => '%a, %d.%m.%Y')
       %td.number
         %span.strong= "%0.1f" % day.hours_worked
