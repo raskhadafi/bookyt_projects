@@ -33,6 +33,7 @@ de:
         time:             Zeitraum
         hours_due:        Soll-Stunden
         hours_worked:     Arbeitsstunden
+        working_hours:    Stunden (Soll)
         overtime:         Über-/Unterzeit
         overall_overtime: Saldo
 

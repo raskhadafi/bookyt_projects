@@ -1,19 +1,17 @@
-%table
+%table.condensed-table.span8
   %tr
     %th= t_attr :date, Activity
-    %th Wochentag
-    %th.number= t_attr :hours_due, Activity
-    %th.number= t_attr :hours_worked, Activity
+    %th.number= t_attr :working_hours, Activity
     %th.number= t_attr :overtime, Activity
     %th.number= t_attr :overall_overtime, Activity
 
   - overall_overtime = 0
   - WorkDay.for_month(@employee).each do |day|
     - overall_overtime += day.overtime
-    %tr{:style => "opacity: #{day.hours_due == 0.0 ? 0.4 : 1}; #{day.overtime < 0.0 ? 'color: #B94A48' : ''}"}
-      %td= day.date
-      %td= l(day.date, :format => '%A')
-      %td.number= day.hours_due
-      %td.number= day.hours_worked
-      %td.number= day.overtime
-      %td.number= overall_overtime
+    %tr{:class => work_day_classes(day)}
+      %td= l(day.date, :format => '%a, %d.%m.%Y')
+      %td.number
+        %span.strong= "%0.1f" % day.hours_worked
+        = "(%0.1f)" % day.hours_due
+      %td.number.strong= day.overtime
+      %td.number.strong= overall_overtime
