@@ -1,0 +1,22 @@
+%table.list
+  %tr
+    %th= t_attr :date, Activity
+    %th Wochentag
+    %th.number= t_attr :hours_due, Activity
+    %th.number= t_attr :hours_worked, Activity
+    %th.number= t_attr :overtime, Activity
+    %th.number= t_attr :overall_overtime, Activity
+
+  - overall_overtime = 0
+  - @employment = @employee.employments.current
+  - days = (Date.today.beginning_of_month..Date.today.end_of_month).to_a
+  - @work_days = days.map{|day| WorkDay.new(day, @employment)}
+  - @work_days.each do |day|
+    - overall_overtime += day.overtime
+    %tr
+      %td= day.date
+      %td= l(day.date, :format => '%A')
+      %td.number= day.hours_due
+      %td.number= day.hours_worked
+      %td.number= day.overtime
+      %td.number= overall_overtime

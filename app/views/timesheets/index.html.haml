@@ -3,22 +3,4 @@
 
 %h1= t_title
 
-%table.list
-  %tr
-    %th= t_attr :date, Activity
-    %th Wochentag
-    %th.number= t_attr :hours_due, Activity
-    %th.number= t_attr :hours_worked, Activity
-    %th.number= t_attr :overtime, Activity
-    %th.number= t_attr :overall_overtime, Activity
-
-  - overall_overtime = 0
-  - @work_days.each do |day|
-    - overall_overtime += day.overtime
-    %tr
-      %td= day.date
-      %td= l(day.date, :format => '%A')
-      %td.number= day.hours_due
-      %td.number= day.hours_worked
-      %td.number= day.overtime
-      %td.number= overall_overtime
+= render 'show'
