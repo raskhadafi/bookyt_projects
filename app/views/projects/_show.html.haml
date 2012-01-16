@@ -1,8 +1,7 @@
-.form-view
-  = render 'form'
+%ul.tabs
+  %li.active= link_to 'Details', '#details'
+  %li= link_to 'Stundenrapport', '#activities'
 
-.contextual
-  = icon_link_to :new, new_project_activity_path(resource)
-%h2= t_title :index, Activity
-
-= render 'activities/list', :collection => @project.activities
+.tab-content
+  #details.active= render "form"
+  #activities= render 'show_activities'

@@ -51,3 +51,5 @@ de:
   activities:
     new:
       title: Zeit erfassen
+    list:
+      title: Aktivitäten

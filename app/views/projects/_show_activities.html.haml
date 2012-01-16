@@ -1,0 +1,5 @@
+.contextual
+  = icon_link_to :new, new_project_activity_path(resource)
+%h2= t_title :index, Activity
+
+= render 'activities/list', :collection => @project.activities
