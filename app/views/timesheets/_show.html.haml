@@ -13,7 +13,7 @@
   - @work_days = days.map{|day| WorkDay.new(day, @employment)}
   - @work_days.each do |day|
     - overall_overtime += day.overtime
-    %tr
+    %tr{:style => "opacity: #{day.hours_due == 0.0 ? 0.4 : 1}; #{day.overtime < 0.0 ? 'color: #B94A48' : ''}"}
       %td= day.date
       %td= l(day.date, :format => '%A')
       %td.number= day.hours_due
