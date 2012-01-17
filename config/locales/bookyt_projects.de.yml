@@ -39,7 +39,7 @@ de:
 
   bookyt:
     projects:
-      minutes:            "%{duration} Minuten"
+      hours:            "%{duration}h"
     main_navigation:
       salaries: Löhne
       projects: Projekte

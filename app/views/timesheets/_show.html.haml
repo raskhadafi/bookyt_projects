@@ -10,11 +10,11 @@
     - overall_overtime += day.overtime
     - activities = @employee.activities.where(:date => day.date)
     - tr_params = {:class => work_day_classes(day)}
-    - tr_params.merge!(:rel => 'popover', 'data-content' => h(render 'activities_popover', :activities => activities), 'data-original-title' => 'Aktivitäten', 'data-html' => 'true') unless activities.empty?
+    - tr_params.merge!(:rel => 'popover', 'data-content' => h(render 'timesheets/activities_popover', :activities => activities), 'data-original-title' => 'Aktivitäten', 'data-html' => 'true') unless activities.empty?
     %tr{tr_params}
       %td= link_to l(day.date, :format => '%a, %d.%m.%Y'), person_activities_path(@employee, :by_date => day.date.to_s(:db)), 'data-href-container' => 'tr'
       %td.number
-        %span.strong= "%0.1f" % day.hours_worked
-        = "(%0.1f)" % day.hours_due
-      %td.number.overtime.strong= day.overtime
-      %td.number.overall-overtime.strong= overall_overtime
+        %span.strong= "%0.2f" % day.hours_worked
+        = "(%0.2f)" % day.hours_due
+      %td.number.overtime.strong= "%0.2f" % day.overtime
+      %td.number.overall-overtime.strong= "%0.2f" % overall_overtime

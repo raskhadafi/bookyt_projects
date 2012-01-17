@@ -17,7 +17,7 @@ class ActivitiesController < AuthorizedController
 
     # Educated guessing of project
     @activity.project_id ||= params[:project_id] if params[:project_id]
-    @activity.project_id ||= @activity.person.activities.order(:duration_to).last
+    @activity.project_id ||= @activity.person.activities.order(:date).last
 
     new!
   end
