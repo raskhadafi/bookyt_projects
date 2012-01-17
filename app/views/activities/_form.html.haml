@@ -1,17 +1,14 @@
 = semantic_form_for @activity do |f|
   = f.inputs do
-    = f.input :project, :as => :combobox
-    = f.input :person, :as => :combobox
+    .row
+      .span8= f.input :person, :as => :combobox
+      .span8= f.input :project, :as => :combobox
+    .row
+      .span8= f.input :date, :as => :date_field
+      .span8= f.input :duration
 
-  = f.inputs do
-    = f.input :date, :as => :date_field, :required => true
-    = f.input :duration_from, :as => :hour_field
-    = f.input :duration_to, :as => :hour_field
-    = f.input :hours
-    = f.input :minutes
-
-  = f.inputs do
-    = f.input :comment
+    .row
+      .span16= f.input :comment, :input_html => {:rows => 2, :class => 'span12'}
 
   = f.buttons do
     = f.commit_button
