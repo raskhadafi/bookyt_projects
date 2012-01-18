@@ -1,11 +1,27 @@
-class WorkDay
-  attr_accessor :date, :employee
+class WorkDay < ActiveRecord::Base
 
-  def initialize(employee, date)
-    @date     = date
-    @employee = employee
+  belongs_to :person
+  has_many :activities
+
+  before_create :current_daily_workload
+
+  def current_daily_workload
+    unless person && person.employments.current && person.employments.current.daily_workload
+      self.daily_workload = 0.0
+    else
+      self.daily_workload = person.employments.current(self.date).daily_workload
+    end
   end
-  
+
+  def self.create_for_current_employment(employee)
+    if employee.employments.current
+      range = employee.employments.current.duration_from..Date.today
+      range.each do |date|
+        WorkDay.create(:person => employee, :date => date)
+      end
+    end
+  end
+
   # Get WorkDay instances for a range
   #
   # Returns an array of WorkDay instances. You probably want
@@ -15,7 +31,15 @@ class WorkDay
   #   :employee: Employee to build WorkDay instances for
   #   :range:    Date range giving first and last day
   def self.for_range(employee, range)
-    range.to_a.map{|day| WorkDay.new(employee, day)}
+    self.create_for_current_employment(employee)
+
+    range.inject([]) do |out, day|
+      work_day = WorkDay.where(:person_id => employee.id, :date => day).first
+      work_day ||= WorkDay.create(:person => employee, :date => day)
+      out << work_day
+
+      out
+    end
   end
 
   # Get WorkDay instances for a month
@@ -31,16 +55,6 @@ class WorkDay
     end_date   = date_in_month.end_of_month
 
     self.for_range(employee, start_date..end_date)
-  end
-
-  # Helper to access daily workload
-  #
-  # Returns 0.0 if no current daily_workload can be determined
-  def daily_workload
-    # Guard
-    return 0.0 unless employee && employee.employments.current && employee.employments.current.daily_workload
-
-    employee.employments.current.daily_workload
   end
 
   # Working hours for this day
@@ -60,7 +74,7 @@ class WorkDay
   # Calculates hours worked by summing up duration of all logged
   # activities.
   def hours_worked
-    employee.activities.where(:date => date).to_a.sum(&:duration)
+    activities.where(:date => date).to_a.sum(&:duration)
   end
 
   # Overtime
@@ -68,5 +82,9 @@ class WorkDay
   # Simply substract hours_due from hours_worked.
   def overtime
     hours_worked - hours_due
+  end
+
+  def overall_overtime
+    WorkDay.where(:person_id => person.id).where('date <= ?', date).to_a.sum(&:overtime)
   end
 end
