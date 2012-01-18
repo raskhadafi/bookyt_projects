@@ -15,10 +15,13 @@ class WorkDay < ActiveRecord::Base
 
   def self.create_for_current_employment(employee)
     if employee.employments.current
-      range = employee.employments.current.duration_from..Date.today
-      range.each do |date|
+      workdays = WorkDay.where(:person_id => employee.id)
+      start_date = workdays.last.date unless workdays.empty?
+      start_date ||= employee.employments.current.duration_from
+
+      (start_date..Date.today).each do |date|
         WorkDay.create(:person => employee, :date => date)
-      end
+      end if workdays.last && (workdays.last.date < start_date)
     end
   end
 
