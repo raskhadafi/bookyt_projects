@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    bookyt_projects (0.18.0)
+    bookyt_projects (0.18.3)
       rails (~> 3.1.0)
       recurrence
 
