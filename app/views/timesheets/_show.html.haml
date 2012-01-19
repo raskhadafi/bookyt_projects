@@ -5,9 +5,9 @@
     %th.number= t_attr :overtime, Activity
     %th.number= t_attr :overall_overtime, Activity
 
-  - overall_overtime = 0
-  - WorkDay.for_month(@employee).each do |day|
-    - overall_overtime += day.overtime
+  - WorkDay.create_or_update_upto(@employee, Date.today.end_of_month)
+  - range = Date.today.beginning_of_month..Date.today.end_of_month
+  - @employee.work_days.where(:date => range).each do |day|
     - tr_params = {:class => work_day_classes(day)}
     - tr_params.merge!(:rel => 'popover', 'data-content' => h(render 'timesheets/activities_popover', :activities => day.activities), 'data-original-title' => 'Aktivitäten', 'data-html' => 'true') unless day.activities.empty?
     %tr{tr_params}

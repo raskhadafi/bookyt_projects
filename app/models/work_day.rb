@@ -1,27 +1,42 @@
 class WorkDay < ActiveRecord::Base
-
+  # Associations
   belongs_to :person
+  validates :person, :presence => true
+
   has_many :activities
 
-  before_create :current_daily_workload
+  # Order
+  default_scope order(:date)
 
-  def current_daily_workload
-    unless person && person.employments.current && person.employments.current.daily_workload
-      self.daily_workload = 0.0
-    else
-      self.daily_workload = person.employments.current(self.date).daily_workload
-    end
+  # Calculations
+  default_scope select('work_days.*, hours_worked - hours_due AS overtime')
+
+  def self.create_or_update(person, date)
+    work_day = person.work_days.where(:date => date).first
+    work_day ||= person.work_days.build(:date => date)
+
+    work_day.update_hours
+
+    work_day.save
   end
 
-  def self.create_for_current_employment(employee)
-    if employee.employments.current
-      workdays = WorkDay.where(:person_id => employee.id)
-      start_date = workdays.last.date unless workdays.empty?
-      start_date ||= employee.employments.current.duration_from
+  def update_hours
+    self.hours_due        = calculate_hours_due
+    self.hours_worked     = calculate_hours_worked
+  end
 
-      (start_date..Date.today).each do |date|
-        WorkDay.create(:person => employee, :date => date)
-      end if workdays.last && (workdays.last.date < start_date)
+  def self.create_or_update_upto(person, end_date)
+    # Guard
+    if latest_work_day = person.work_days.last
+      start_date = latest_work_day.date
+    else
+      start_date = end_date
+    end
+
+    (start_date..end_date).each do |date|
+      transaction do
+        self.create_or_update(person, date)
+      end
     end
   end
 
@@ -33,35 +48,34 @@ class WorkDay < ActiveRecord::Base
   # params:
   #   :employee: Employee to build WorkDay instances for
   #   :range:    Date range giving first and last day
-  def self.for_range(employee, range)
+  def self.build_or_update(employee, date)
     self.create_for_current_employment(employee)
-
-    range.inject([]) do |out, day|
+    range.collect do |day|
       work_day = WorkDay.where(:person_id => employee.id, :date => day).first
       work_day ||= WorkDay.create(:person => employee, :date => day)
-      out << work_day
-
-      out
     end
   end
 
-  # Get WorkDay instances for a month
+  # Get employment
   #
-  # params:
-  #   :employee:      Employee to build WorkDay instances for
-  #   :date_in_month: Any day in the requested month. Uses today by default.
-  def self.for_month(employee, date_in_month = nil)
-    # Assume today if no date given
-    date_in_month ||= Date.today
+  # Lookup the employment for this day.
+  def employment
+    person.employments.current(self.date)
+  end
 
-    start_date = date_in_month.beginning_of_month
-    end_date   = date_in_month.end_of_month
-
-    self.for_range(employee, start_date..end_date)
+  # Get daily workload
+  #
+  # Lookup daily workload for person. Returns 0.0 if no
+  # employment is specified.
+  def daily_workload
+    employment.try(:daily_workload) || 0.0
   end
 
   # Working hours for this day
-  def hours_due
+  #
+  # Saturday and sunday are off, uses daily workload for
+  # all other days.
+  def calculate_hours_due
     case date.wday
       when 6, 0
         # Saturday and sunday are off
@@ -76,18 +90,12 @@ class WorkDay < ActiveRecord::Base
   #
   # Calculates hours worked by summing up duration of all logged
   # activities.
-  def hours_worked
-    activities.where(:date => date).to_a.sum(&:duration)
+  def calculate_hours_worked
+    activities.where(:date => date).sum('duration')
   end
 
-  # Overtime
-  #
-  # Simply substract hours_due from hours_worked.
-  def overtime
-    hours_worked - hours_due
-  end
-
+  # Calculate accumulated overtime
   def overall_overtime
-    WorkDay.where(:person_id => person.id).where('date <= ?', date).to_a.sum(&:overtime)
+    WorkDay.where('date <= ?', date).sum('hours_worked - hours_due')
   end
 end

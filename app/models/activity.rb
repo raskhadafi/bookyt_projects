@@ -2,7 +2,6 @@ class Activity < ActiveRecord::Base
   # Associations
   belongs_to :project
   belongs_to :person
-  belongs_to :work_day
   validates :project, :presence => true, :allow_blank => false
   validates :person,  :presence => true, :allow_blank => false
   
@@ -13,8 +12,6 @@ class Activity < ActiveRecord::Base
   validates :duration, :presence => true, :format => {:with => /[0-9]{1,2}([:.][0-9]{1,2})/}
 
   validates_date :date, :allow_nil => false, :allow_blank => false
-
-  before_save :create_work_day
 
   def duration=(value)
     if value.match(/:/)
@@ -29,12 +26,12 @@ class Activity < ActiveRecord::Base
     "%s: %0.2fh" % [project.name, duration]
   end
 
+  # Work day
+  belongs_to :work_day, :autosave => true
+  before_save :update_work_day
+
   private
-
-  def create_work_day
-    work_day = WorkDay.where(:person_id => person_id, :date => date).first
-    work_day ||= WorkDay.create(:person_id => person_id, :date => date)
-
-    self.work_day = work_day
+  def update_work_day
+    WorkDay.create_or_update_upto(self.person, date)
   end
 end

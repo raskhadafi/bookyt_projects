@@ -4,6 +4,7 @@ module BookytProjects
 
     included do
       has_many :activities, :foreign_key => :person_id
+      has_many :work_days, :foreign_key => :person_id
     end
 
     module InstanceMethods
