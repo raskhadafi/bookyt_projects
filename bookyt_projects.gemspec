@@ -30,20 +30,20 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<rails>, ["~> 3.1.0"])
+      s.add_runtime_dependency(%q<rails>, ["~> 3.1"])
       s.add_runtime_dependency(%q<recurrence>, [">= 0"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
       s.add_development_dependency(%q<rspec-rails>)
     else
-      s.add_dependency(%q<rails>, ["~> 3.1.0"])
+      s.add_dependency(%q<rails>, ["~> 3.1"])
       s.add_dependency(%q<recurrence>, [">= 0"])
       s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<rcov>, [">= 0"])
       s.add_dependency(%q<rspec-rails>)
     end
   else
-    s.add_dependency(%q<rails>, ["~> 3.1.0"])
+    s.add_dependency(%q<rails>, ["~> 3.1"])
     s.add_dependency(%q<recurrence>, [">= 0"])
     s.add_dependency(%q<shoulda>, [">= 0"])
     s.add_dependency(%q<rcov>, [">= 0"])
