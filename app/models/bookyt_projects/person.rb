@@ -7,10 +7,8 @@ module BookytProjects
       has_many :work_days, :foreign_key => :person_id
     end
 
-    module InstanceMethods
-      def latest_project
-        activities.order(:date).last.try(:project)
-      end
+    def latest_project
+      activities.order(:date).last.try(:project)
     end
   end
 end
