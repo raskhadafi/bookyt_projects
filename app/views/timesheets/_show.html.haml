@@ -1,9 +1,9 @@
 %table.condensed-table.span8
   %tr
     %th= t_attr :date, Activity
-    %th.number= t_attr :working_hours, Activity
-    %th.number= t_attr :overtime, Activity
-    %th.number= t_attr :overall_overtime, Activity
+    %th.right= t_attr :working_hours, Activity
+    %th.right= t_attr :overtime, Activity
+    %th.right= t_attr :overall_overtime, Activity
 
   - WorkDay.create_or_update_upto(@employee, Date.today.end_of_month)
   - range = Date.today.beginning_of_month..Date.today.end_of_month
@@ -12,8 +12,8 @@
     - tr_params.merge!(:rel => 'popover', 'data-content' => h(render 'timesheets/activities_popover', :activities => day.activities), 'data-original-title' => 'Aktivitäten', 'data-html' => 'true') unless day.activities.empty?
     %tr{tr_params}
       %td= link_to l(day.date, :format => '%a, %d.%m.%Y'), person_activities_path(@employee, :by_date => day.date.to_s(:db)), 'data-href-container' => 'tr'
-      %td.number
+      %td.right
         %span.strong= "%0.2f" % day.hours_worked
         = "(%0.2f)" % day.hours_due
-      %td.number.overtime.strong= "%0.2f" % day.overtime
-      %td.number.overall-overtime.strong= "%0.2f" % day.overall_overtime
+      %td.right.overtime.strong= "%0.2f" % day.overtime
+      %td.right.overall-overtime.strong= "%0.2f" % day.overall_overtime
