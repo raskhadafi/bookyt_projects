@@ -41,8 +41,7 @@ de:
     projects:
       hours:            "%{duration}h"
     main_navigation:
-      salaries: Löhne
-      projects: Projekte
+      projects: Zeiterfassung
 
   # Titles
   timesheets:
