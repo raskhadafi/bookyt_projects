@@ -28,10 +28,11 @@ class Activity < ActiveRecord::Base
 
   # Work day
   belongs_to :work_day, :autosave => true
-  before_save :update_work_day
+  after_save :update_work_day
+  after_destroy :update_work_day
 
   private
   def update_work_day
-    WorkDay.create_or_update_upto(self.person, date)
+    WorkDay.create_or_update(self.person, date)
   end
 end

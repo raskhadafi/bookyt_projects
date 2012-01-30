@@ -3,8 +3,8 @@ module BookytProjects
     extend ActiveSupport::Concern
 
     included do
-      has_many :activities, :foreign_key => :person_id
-      has_many :work_days, :foreign_key => :person_id
+      has_many :activities, :foreign_key => :person_id, :dependent => :destroy
+      has_many :work_days, :foreign_key => :person_id, :dependent => :destroy
     end
 
     def latest_project

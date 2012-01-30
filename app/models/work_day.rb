@@ -54,6 +54,8 @@ class WorkDay < ActiveRecord::Base
       work_day = WorkDay.where(:person_id => employee.id, :date => day).first
       work_day ||= WorkDay.create(:person => employee, :date => day)
     end
+
+    work_day
   end
 
   # Get employment
@@ -91,7 +93,7 @@ class WorkDay < ActiveRecord::Base
   # Calculates hours worked by summing up duration of all logged
   # activities.
   def calculate_hours_worked
-    activities.where(:date => date).sum('duration')
+    person.activities.where(:date => date).sum('duration')
   end
 
   # Calculate accumulated overtime
