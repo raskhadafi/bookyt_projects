@@ -3,7 +3,9 @@ class WorkDay < ActiveRecord::Base
   belongs_to :person
   validates :person, :presence => true
 
-  has_many :activities
+  def activities
+    person.activities.where(:date => date)
+  end
 
   # Order
   default_scope order(:date)
@@ -93,7 +95,7 @@ class WorkDay < ActiveRecord::Base
   # Calculates hours worked by summing up duration of all logged
   # activities.
   def calculate_hours_worked
-    person.activities.where(:date => date).sum('duration')
+    activities.where(:date => date).sum('duration')
   end
 
   # Calculate accumulated overtime
