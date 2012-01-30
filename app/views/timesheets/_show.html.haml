@@ -11,7 +11,11 @@
     - tr_params = {:class => work_day_classes(day)}
     - tr_params.merge!(:rel => 'popover', 'data-content' => h(render 'timesheets/activities_popover', :activities => day.activities), 'data-original-title' => 'Aktivitäten', 'data-html' => 'true') unless day.activities.empty?
     %tr{tr_params}
-      %td= link_to l(day.date, :format => '%a, %d.%m.%Y'), person_activities_path(@employee, :by_date => day.date.to_s(:db)), 'data-href-container' => 'tr'
+      %td
+        - if day.activities.empty?
+          = link_to l(day.date, :format => '%a, %d.%m.%Y'), new_activity_path(:activity => {:person_id => @employee.id, :date => day.date.to_s(:db)}), 'data-href-container' => 'tr'
+        - else
+          = link_to l(day.date, :format => '%a, %d.%m.%Y'), person_activities_path(@employee, :by_date => day.date.to_s(:db)), 'data-href-container' => 'tr'
       %td.right
         %span.strong= "%0.2f" % day.hours_worked
         = "(%0.2f)" % day.hours_due
