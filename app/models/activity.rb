@@ -8,6 +8,9 @@ class Activity < ActiveRecord::Base
   # Scopes
   scope :by_date, lambda {|value| where(:date => value)}
 
+  # Sorting
+  default_scope order("date DESC")
+
   # Duration
   validates :duration, :presence => true, :format => {:with => /[0-9]{1,2}([:.][0-9]{1,2})/}
 
