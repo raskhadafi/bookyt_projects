@@ -1,1 +1,9 @@
-= render 'timesheets/show'
+- WorkDay.create_or_update_upto(@employee, Date.today.end_of_month)
+
+.row
+  .span8
+    - range = Date.parse('2012-01-01')..Date.parse('2012-01-31')
+    = render 'timesheets/show', :work_days => @employee.work_days.where(:date => range)
+  .span8
+    - range = Date.today.beginning_of_month..Date.today.end_of_month
+    = render 'timesheets/show', :work_days => @employee.work_days.where(:date => range)
