@@ -42,24 +42,6 @@ class WorkDay < ActiveRecord::Base
     end
   end
 
-  # Get WorkDay instances for a range
-  #
-  # Returns an array of WorkDay instances. You probably want
-  # to feed it a first day of month kind of starting_date.
-  #
-  # params:
-  #   :employee: Employee to build WorkDay instances for
-  #   :range:    Date range giving first and last day
-  def self.build_or_update(employee, date)
-    self.create_for_current_employment(employee)
-    range.collect do |day|
-      work_day = WorkDay.where(:person_id => employee.id, :date => day).first
-      work_day ||= WorkDay.create(:person => employee, :date => day)
-    end
-
-    work_day
-  end
-
   # Get employment
   #
   # Lookup the employment for this day.
