@@ -87,6 +87,6 @@ class WorkDay < ActiveRecord::Base
 
   # Calculate accumulated overtime
   def overall_overtime
-    WorkDay.where('date <= ?', date).sum('hours_worked - hours_due')
+    person.work_days.where('date <= ?', date).sum('hours_worked - hours_due')
   end
 end
