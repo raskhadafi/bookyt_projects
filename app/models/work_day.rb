@@ -10,6 +10,11 @@ class WorkDay < ActiveRecord::Base
   # Order
   default_scope order(:date)
 
+  # String
+  def to_s
+    "%s %s: %s/%s" % [date, person, hours_worked, hours_due]
+  end
+
   # Calculations
   default_scope select('work_days.*, hours_worked - hours_due AS overtime')
 
