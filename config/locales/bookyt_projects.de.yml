@@ -55,3 +55,7 @@ de:
       title: Aktivitäten
     timesheet:
       title: Stundenrapport
+
+  project_states:
+    index:
+      title: Projektstatus
