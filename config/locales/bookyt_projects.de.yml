@@ -59,3 +59,7 @@ de:
   project_states:
     index:
       title: Projektstatus
+
+  projects:
+    index:
+      title:  Projekte
