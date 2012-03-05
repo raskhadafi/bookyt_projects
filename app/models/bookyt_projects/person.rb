@@ -10,5 +10,9 @@ module BookytProjects
     def latest_project
       activities.order(:date).last.try(:project)
     end
+
+    def uses_timetracker?
+      work_days.present?
+    end
   end
 end
