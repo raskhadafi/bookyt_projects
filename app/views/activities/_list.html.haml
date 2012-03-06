@@ -1,6 +1,7 @@
-%table.list#activities_list
-  %tr
-    - [:person, :date, :duration].each do |attr|
-      %th= t_attr(attr, Activity)
-
-  = render collection
+%table.zebra-striped.activities.collection
+  %thead
+    %tr
+      - [:person, :date, :duration].each do |attr|
+        %th= t_attr(attr, Activity)
+  %tbody
+    = render collection

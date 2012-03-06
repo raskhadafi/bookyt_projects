@@ -1,21 +1,22 @@
-%table.condensed-table.span8
-  %tr
-    %th= t_attr :date, Activity
-    %th.right= t_attr :working_hours, Activity
-    %th.right= t_attr :overtime, Activity
-    %th.right= t_attr :overall_overtime, Activity
-
-  - work_days.each do |day|
-    - tr_params = {:class => work_day_classes(day)}
-    - tr_params.merge!(:rel => 'popover', 'data-content' => h(render 'timesheets/activities_popover', :activities => day.activities), 'data-original-title' => 'Aktivitäten', 'data-html' => 'true') unless day.activities.empty?
-    %tr{tr_params}
-      %td
-        - if day.activities.empty?
-          = link_to l(day.date, :format => '%a, %d.%m.%Y'), new_activity_path(:activity => {:person_id => day.person_id, :date => day.date.to_s(:db)}), 'data-href-container' => 'tr'
-        - else
-          = link_to l(day.date, :format => '%a, %d.%m.%Y'), person_activities_path(day.person, :by_date => day.date.to_s(:db)), 'data-href-container' => 'tr'
-      %td.right
-        %span.strong= "%0.2f" % day.hours_worked
-        = "(%0.2f)" % day.hours_due
-      %td.right.overtime.strong= "%0.2f" % day.overtime
-      %td.right.overall-overtime.strong= "%0.2f" % day.overall_overtime
+%table.zebra-striped.condensed-table.span8
+  %thead
+    %tr
+      %th= t_attr :date, Activity
+      %th.right= t_attr :working_hours, Activity
+      %th.right= t_attr :overtime, Activity
+      %th.right= t_attr :overall_overtime, Activity
+  %tbody
+    - work_days.each do |day|
+      - tr_params = {:class => work_day_classes(day)}
+      - tr_params.merge!(:rel => 'popover', 'data-content' => h(render 'timesheets/activities_popover', :activities => day.activities), 'data-original-title' => 'Aktivitäten', 'data-html' => 'true') unless day.activities.empty?
+      %tr{tr_params}
+        %td
+          - if day.activities.empty?
+            = link_to l(day.date, :format => '%a, %d.%m.%Y'), new_activity_path(:activity => {:person_id => day.person_id, :date => day.date.to_s(:db)}), 'data-href-container' => 'tr'
+          - else
+            = link_to l(day.date, :format => '%a, %d.%m.%Y'), person_activities_path(day.person, :by_date => day.date.to_s(:db)), 'data-href-container' => 'tr'
+        %td.right
+          %span.strong= "%0.2f" % day.hours_worked
+          = "(%0.2f)" % day.hours_due
+        %td.right.overtime.strong= "%0.2f" % day.overtime
+        %td.right.overall-overtime.strong= "%0.2f" % day.overall_overtime
