@@ -2,7 +2,7 @@
 
 .row
   .span8
-    = render 'timesheets/show', :work_days => @employee.work_days.where(:date => current_month_period(:time_sheet_period)
+    = render 'timesheets/show', :work_days => @employee.work_days.where(:date => current_month_period(:time_sheet_period))
 
   .span4
     = render 'timesheets/pager'
