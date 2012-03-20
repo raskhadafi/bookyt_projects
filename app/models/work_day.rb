@@ -51,6 +51,9 @@ class WorkDay < ActiveRecord::Base
   #
   # Lookup the employment for this day.
   def employment
+    # Guard as only some classes provide .employments
+    return nil unless person.respond_to?(:employments)
+
     person.employments.current(self.date)
   end
 
