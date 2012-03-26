@@ -1,8 +1,8 @@
 - WorkDay.create_or_update_upto(@employee, Date.today.end_of_month)
 
 .row
-  .span8
+  .span6
     = render 'timesheets/show', :work_days => @employee.work_days.where(:date => current_month_period(:time_sheet_period))
 
-  .span4
-    = render 'timesheets/pager'
+- content_for :sidebar do
+  = render 'timesheets/pager'
