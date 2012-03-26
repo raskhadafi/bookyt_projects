@@ -3,7 +3,7 @@
     = f.input :date, :as => :date_field, :label => t('attributes.date'), :input_html => {:value => @date}
 
   = f.inputs do
-    %table.zebra-striped{:style => 'width: 100%'}
+    %table.table.table-striped.collection
       %thead
         %th= t_attr :person, Activity
         %th= t_attr :project, Activity
