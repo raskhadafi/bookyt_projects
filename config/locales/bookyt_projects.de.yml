@@ -63,3 +63,6 @@ de:
   projects:
     index:
       title:  Projekte
+
+  time_sheet_period:
+    title:    Zeitraum
