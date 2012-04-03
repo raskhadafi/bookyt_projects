@@ -1,7 +1,7 @@
 - WorkDay.create_or_update_upto(@employee, Date.today.end_of_month)
 
 .row-fluid
-  .span10
+  .span12
     = render 'timesheets/show', :work_days => @employee.work_days.where(:date => current_month_period(:time_sheet_period))
 
 - content_for :sidebar do

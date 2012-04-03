@@ -2,16 +2,16 @@
   = f.semantic_errors
   = f.inputs do
     .row-fluid
-      .span5
+      .span6
         = f.input :name, :input_html => {'data-autofocus' => 'true'}
         = f.input :duration_from, :as => :date_field
         = f.input :client, :as => :combobox
-      .span5
+      .span6
         = f.input :project_state
         = f.input :duration_to, :as => :date_field
     .row-fluid
-      .span10
-        = f.input :remarks, :input_html => {:rows => 5, :class => 'span10'}
+      .span12
+        = f.input :remarks, :input_html => {:rows => 5, :class => 'span12'}
 
   = f.buttons do
     = f.commit_button
