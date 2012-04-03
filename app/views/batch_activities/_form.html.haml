@@ -1,25 +1,22 @@
-= semantic_form_for :batch_activities, :url => batch_activities_path do |f|
-  = f.inputs do
-    = f.input :date, :as => :date_field, :label => t('attributes.date'), :input_html => {:value => @date}
+= simple_form_for :batch_activities, :url => batch_activities_path do |f|
+  = f.input :date, :as => :date_field, :label => t('attributes.date'), :input_html => {:value => @date}
 
-  = f.inputs do
-    %table.table.table-striped.collection
-      %thead
-        %th= t_attr :person, Activity
-        %th= t_attr :project, Activity
-        %th{:style => 'width: 5em'}= t_attr :duration, Activity
-        %th= t_attr :remarks, Activity
+  %table.table.table-striped.collection
+    %thead
+      %th= t_attr :person, Activity
+      %th= t_attr :project, Activity
+      %th{:style => 'width: 5em'}= t_attr :duration, Activity
+      %th= t_attr :remarks, Activity
 
-      %tbody
-      - for activity in @activities
-        %tr
-          = fields_for 'activities[]', activity do |a|
-            %td
-              = link_to activity.person, activity.person
-              = a.hidden_field :person_id
-            %td= a.select :project_id, Project.all.map{|project| [project.to_s, project.id]}, {:prompt => t_select_prompt(Project)}
-            %td= a.text_field :duration
-            %td= a.text_field :remarks
+    %tbody
+    - for activity in @activities
+      %tr
+        = fields_for 'activities[]', activity do |a|
+          %td
+            = link_to activity.person, activity.person
+            = a.hidden_field :person_id
+          %td= a.select :project_id, Project.all.map{|project| [project.to_s, project.id]}, {:prompt => t_select_prompt(Project)}
+          %td= a.text_field :duration
+          %td= a.text_field :remarks
 
-  = f.buttons do
-    = f.commit_button
+  = f.button :submit

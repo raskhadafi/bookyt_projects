@@ -1,5 +1,3 @@
-= semantic_form_for @project_state do |f|
-  = f.semantic_errors
+= simple_form_for @project_state do |f|
   = f.inputs :name
-  = f.buttons do
-    = f.commit_button
+  = f.button :submit

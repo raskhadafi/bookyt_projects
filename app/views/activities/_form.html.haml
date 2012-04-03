@@ -1,14 +1,12 @@
-= semantic_form_for @activity do |f|
-  = f.inputs do
-    .row-fluid
-      .span6= f.input :person, :as => :combobox
-      .span6= f.input :project, :as => :combobox
-    .row-fluid
-      .span6= f.input :date, :as => :date_field
-      .span6= f.input :duration, :as => :string
+= simple_form_for @activity do |f|
+  .row-fluid
+    .span6= f.input :person, :as => :combobox
+    .span6= f.input :project, :as => :combobox
+  .row-fluid
+    .span6= f.input :date, :as => :date_field
+    .span6= f.input :duration, :as => :string
 
-    .row-fluid
-      .span12= f.input :remarks, :input_html => {:rows => 2, :class => 'span12'}
+  .row-fluid
+    .span12= f.input :remarks, :input_html => {:rows => 2}
 
-  = f.buttons do
-    = f.commit_button
+  = f.button :submit
