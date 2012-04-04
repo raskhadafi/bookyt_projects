@@ -1,5 +1,10 @@
+- @activities = resource.activities
+- if @activities.empty?
+  = boot_alert(t('activities.alerts.empty'))
+  .activities.collection
+
+- else
+  = render 'activities/list', :collection => @project.activities unless @activities.empty?
+
 .contextual
   = icon_link_to :new, new_project_activity_path(resource)
-= boot_page_title :index, Activity
-
-= render 'activities/list', :collection => @project.activities

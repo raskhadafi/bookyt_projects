@@ -1,1 +1,7 @@
-= render 'activities/list', :collection => resource.activities
+- @activities = resource.activities
+- if @activities.empty?
+  = boot_alert(t('activities.alerts.empty'))
+  .activities.collection
+
+- else
+  = render 'activities/list', :collection => resource.activities unless @activities.empty?
