@@ -8,7 +8,7 @@
   %tbody
     - work_days.each do |day|
       - tr_params = {:class => work_day_classes(day)}
-      - tr_params.merge!(:rel => 'popover', 'data-content' => h(render 'timesheets/activities_popover', :activities => day.activities), 'data-original-title' => 'Aktivitäten', 'data-html' => 'true') unless day.activities.empty?
+      - tr_params.merge!(:rel => 'popover', 'data-placement' => 'bottom', 'data-content' => h(render 'timesheets/activities_popover', :activities => day.activities), 'data-original-title' => 'Aktivitäten', 'data-html' => 'true') unless day.activities.empty?
       %tr{tr_params}
         %td
           - if day.activities.empty?
