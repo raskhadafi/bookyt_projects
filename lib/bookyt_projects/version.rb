@@ -1,3 +1,3 @@
 module BookytPos
-  VERSION = '0.19.21'
+  VERSION = '0.19.22'
 end
