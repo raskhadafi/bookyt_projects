@@ -1,4 +1,5 @@
 %tr[activity]
-  %td= activity.person
   %td= link_to activity.date, activity, {'data-href-container' => 'tr'}
+  %td= activity.person
+  %td= activity.project
   %td= t('bookyt.projects.hours', :duration => "%0.2f" % activity.duration)
