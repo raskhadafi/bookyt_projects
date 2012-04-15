@@ -1,10 +1,10 @@
-- @activities = resource.activities
+- @activities = resource.activities.where(:date => current_month_period(:by_period))
 - if @activities.empty?
   = boot_alert(t('activities.alerts.empty'))
   .activities.collection
 
 - else
-  = render 'activities/list', :collection => @project.activities unless @activities.empty?
+  = render 'activities/list', :collection => @activities unless @activities.empty?
 
 .contextual
   = icon_link_to :new, new_project_activity_path(resource)
