@@ -1,6 +1,0 @@
-- filter_name = :time_sheet_period
-- params[filter_name] ||= {"from" => Date.today.beginning_of_month.to_s(:db), "to" => Date.today.end_of_month.to_s(:db)}
-
-- content_for :sidebar do
-  - filters = month_periods
-  = boot_nav_filter(filter_name, filters)
