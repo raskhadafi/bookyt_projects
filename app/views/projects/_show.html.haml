@@ -1,7 +1,7 @@
 .tabbable
   %ul.nav.nav-tabs
     %li.active= link_to 'Details', '#tab-details', {:data => {:toggle => 'tab'}}
-    %li= link_to 'Stundenrapport', '#tab-activities', {:data => {:toggle => 'tab'}}
+    %li= link_to t_title(:list, Activity), '#tab-activities', {:data => {:toggle => 'tab'}}
 
 .tab-content
   #tab-details.tab-pane.active
