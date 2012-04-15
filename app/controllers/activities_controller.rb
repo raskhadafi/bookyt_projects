@@ -3,6 +3,7 @@ class ActivitiesController < AuthorizedController
   belongs_to :person, :optional => true
 
   has_scope :by_date
+  has_scope :by_period, :using => [:from, :to]
 
   def new
     # Allow callers specifying defaults
