@@ -1,10 +1,10 @@
 .tabbable
   %ul.nav.nav-tabs
-    %li.active= link_to 'Details', '#details', {:data => {:toggle => 'tab'}}
-    %li= link_to 'Stundenrapport', '#activities', {:data => {:toggle => 'tab'}}
+    %li.active= link_to 'Details', '#tab-details', {:data => {:toggle => 'tab'}}
+    %li= link_to 'Stundenrapport', '#tab-activities', {:data => {:toggle => 'tab'}}
 
 .tab-content
-  #details.tab-pane.active
+  #tab-details.tab-pane.active
     = render "form"
-  #activities.tab-pane
+  #tab-activities.tab-pane
     = render 'show_activities'
