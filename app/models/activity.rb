@@ -7,6 +7,13 @@ class Activity < ActiveRecord::Base
   
   # Scopes
   scope :by_date, lambda {|value| where(:date => value)}
+  scope :by_period, lambda {|value|
+    if value.is_a? Array
+      where(:date => (value[0]..value[1]))
+    else
+      where(:date => value)
+    end
+  }
 
   # Sorting
   default_scope order("date DESC")
