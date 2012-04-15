@@ -1,4 +1,6 @@
-%tr[activity]
+- tr_params = {}
+- tr_params = {:rel => 'popover', 'data-placement' => 'bottom', 'data-content' => activity.remarks, 'data-original-title' => t_attr(:remarks, Activity)} if activity.remarks.present?
+%tr[activity]{tr_params}
   %td= link_to activity.date, activity, {'data-href-container' => 'tr'}
   %td= link_to activity.person, activity.person
   %td= link_to activity.project, activity.project
