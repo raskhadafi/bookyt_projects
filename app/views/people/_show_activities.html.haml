@@ -5,3 +5,6 @@
 
 - else
   = render 'activities/list', :collection => @activities unless @activities.empty?
+
+.form-actions
+  = icon_link_to :new, new_person_activity_path(resource)
