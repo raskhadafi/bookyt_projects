@@ -4,6 +4,7 @@ class ActivitiesController < AuthorizedController
 
   has_scope :by_date
   has_scope :by_period, :using => [:from, :to]
+  has_scope :by_project_id
 
   def new
     # Allow callers specifying defaults

@@ -14,6 +14,9 @@ class Activity < ActiveRecord::Base
       where(:date => value)
     end
   }
+  scope :by_project_id, lambda {|value|
+    where(:project_id => value) if value.present?
+  }
 
   # Sorting
   default_scope order("date DESC")
