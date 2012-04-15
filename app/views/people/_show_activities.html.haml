@@ -1,4 +1,4 @@
-- @activities = resource.activities.where(:date => current_month_period(:by_period))
+- @activities = resource.activities.where(:date => current_month_period(:by_period)).by_project_id(params[:by_project_id])
 - if @activities.empty?
   = boot_alert(t('activities.alerts.empty'))
   .activities.collection
