@@ -5,6 +5,7 @@ module BookytProjects
         projects.item :project_index, t_title(:index, Project), projects_path, :highlights_on => /\/(projects|activities)($|\/[0-9]*($|\/.*))/
         projects.item :new_project, t_title(:new, Project), new_project_path
         projects.item :divider, "", :class => 'divider'
+        projects.item :activities, t_title(:index, Activity), activities_path
         projects.item :capture_hours, t('activities.new.title'), new_batch_activity_path
       end
     end
