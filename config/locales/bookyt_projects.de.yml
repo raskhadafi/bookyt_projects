@@ -68,3 +68,7 @@ de:
 
   time_sheet_period:
     title:    Zeitraum
+
+  # Filters
+  by_project_id:
+    title:    Projekt
