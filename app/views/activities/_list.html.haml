@@ -5,5 +5,11 @@
         %th= t_attr(attr, Activity)
   %tbody
     = render collection
+  %tfoot
+    %tr
+      %th= "#{collection.minimum(:date)} - #{collection.maximum(:date)}"
+      %th
+      %th
+      %th= t('bookyt.projects.hours', :duration => "%0.2f" % collection.sum(:duration))
 
 = render 'activities/sidebar'
