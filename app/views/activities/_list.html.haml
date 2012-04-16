@@ -1,8 +1,9 @@
 %table.table.table-striped.activities.collection
   %thead
     %tr
-      - [:date, :person, :project, :duration].each do |attr|
+      - [:date, :person, :project].each do |attr|
         %th= t_attr(attr, Activity)
+      %th.right= t_attr(:duration, Activity)
   %tbody
     = render collection
   %tfoot
@@ -10,6 +11,6 @@
       %th= "#{collection.minimum(:date)} - #{collection.maximum(:date)}"
       %th
       %th
-      %th= t('bookyt.projects.hours', :duration => "%0.2f" % collection.sum(:duration))
+      %th.right= t('bookyt.projects.hours', :duration => "%0.2f" % collection.sum(:duration))
 
 = render 'activities/sidebar'
