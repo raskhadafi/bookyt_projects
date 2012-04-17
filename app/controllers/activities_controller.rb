@@ -15,6 +15,7 @@ class ActivitiesController < AuthorizedController
     end
 
     # Educated guessing of person
+    @activity.person ||= Person.find(params[:person_id]) if params[:person_id]
     @activity.person ||= current_user.person if current_user
 
     # Educated guessing of project
