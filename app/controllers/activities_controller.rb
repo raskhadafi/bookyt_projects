@@ -1,6 +1,7 @@
 class ActivitiesController < AuthorizedController
   belongs_to :project, :optional => true
   belongs_to :person, :optional => true
+  belongs_to :employee, :optional => true
 
   has_scope :by_date
   has_scope :by_period, :using => [:from, :to]
@@ -15,6 +16,7 @@ class ActivitiesController < AuthorizedController
     end
 
     # Educated guessing of person
+    @activity.person ||= Person.find(params[:employee_id]) if params[:employee_id]
     @activity.person ||= Person.find(params[:person_id]) if params[:person_id]
     @activity.person ||= current_user.person if current_user
 
