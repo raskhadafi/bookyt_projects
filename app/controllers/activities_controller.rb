@@ -29,7 +29,8 @@ class ActivitiesController < AuthorizedController
 
   def create
     create! {
-      polymorphic_url([:new, parent, :activity].compact)
+      params = {:date => @activity.date.in(1.day).to_date, :project_id => @activity.project_id}
+      polymorphic_url([:new, parent, :activity].compact, :activity => params)
     }
   end
 end
