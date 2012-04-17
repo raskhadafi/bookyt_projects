@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :employees do
     resources :timesheets
+    resources :activities
   end
 
   resources :people do
