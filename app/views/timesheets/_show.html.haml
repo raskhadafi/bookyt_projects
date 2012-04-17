@@ -12,7 +12,7 @@
       %tr{tr_params}
         %td
           - if day.activities.empty?
-            = link_to l(day.date, :format => '%d.%m.%Y, %a'), new_activity_path(:activity => {:person_id => day.person_id, :date => day.date.to_s(:db)}), 'data-href-container' => 'tr'
+            = link_to l(day.date, :format => '%d.%m.%Y, %a'), new_person_activity_path(day.person, :activity => {:date => day.date.to_s(:db)}), 'data-href-container' => 'tr'
           - else
             = link_to l(day.date, :format => '%d.%m.%Y, %a'), person_activities_path(day.person, :by_date => day.date.to_s(:db)), 'data-href-container' => 'tr'
         %td.right
