@@ -19,7 +19,7 @@ class ActivitiesController < AuthorizedController
 
     # Educated guessing of project
     @activity.project_id ||= params[:project_id] if params[:project_id]
-    @activity.project_id ||= @activity.person.latest_project.id
+    @activity.project_id ||= @activity.person.latest_project.try(:id)
 
     new!
   end
