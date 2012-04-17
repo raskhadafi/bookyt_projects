@@ -25,6 +25,8 @@ class ActivitiesController < AuthorizedController
   end
 
   def create
-    create! { @activity.project }
+    create! {
+      polymorphic_url([:new, parent, :activity].compact)
+    }
   end
 end

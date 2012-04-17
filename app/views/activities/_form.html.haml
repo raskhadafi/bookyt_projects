@@ -1,4 +1,4 @@
-= simple_form_for @activity do |f|
+= simple_form_for [parent, @activity].compact do |f|
   .row-fluid
     .span6= f.association :person, :as => :combobox
     .span6= f.association :project, :as => :combobox
