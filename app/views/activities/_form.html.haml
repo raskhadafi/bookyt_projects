@@ -3,7 +3,7 @@
     .span6= f.association :person, :as => :combobox
     .span6= f.association :project, :as => :combobox
   .row-fluid
-    .span6= f.input :duration, :as => :string
+    .span6= f.input :duration, :as => :string, :input_html => {'data-autofocus' => true}
     .span6= f.input :date, :as => :date_field
 
   .row-fluid
