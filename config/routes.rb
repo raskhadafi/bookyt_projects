@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   resources :batch_activities
 
   resources :employees do
-    resources :timesheets
+    resources :timesheets do
+      collection do
+        post :start
+      end
+    end
     resources :activities
   end
 

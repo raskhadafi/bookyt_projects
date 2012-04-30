@@ -1,5 +1,13 @@
-- WorkDay.create_or_update_upto(@employee, Date.today.end_of_month)
+- if @employee.work_days.empty?
+  = boot_no_entry_alert
 
-.row-fluid
-  .span12
-    = render 'timesheets/show', :work_days => @employee.work_days.where(:date => current_month_period(:by_period))
+  = simple_form_for :timesheet, :url => start_employee_timesheets_url(@employee) do |f|
+    = f.input :duration_from, :as => :date_field
+    .form-actions
+      = f.button :submit
+
+- else
+  - WorkDay.create_or_update_upto(@employee, Date.today.end_of_month)
+  .row-fluid
+    .span12
+      = render 'timesheets/show', :work_days => @employee.work_days.where(:date => current_month_period(:by_period))
