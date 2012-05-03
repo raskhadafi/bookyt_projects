@@ -11,3 +11,5 @@
   .row-fluid
     .span12
       = render 'timesheets/show', :work_days => @employee.work_days.where(:date => current_month_period(:by_period))
+
+= render 'activities/sidebar'

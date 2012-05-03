@@ -1,0 +1,4 @@
+- filter_name = :by_project_id
+- define_filter filter_name do
+  - filters = Project.all.collect{|project| {:title => project.to_s, :value => project.id} }
+  = boot_nav_filter(filter_name, [{:title => t('bookyt.all'), :value => nil}] + filters)

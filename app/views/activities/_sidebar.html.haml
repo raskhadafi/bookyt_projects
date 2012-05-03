@@ -1,10 +1,2 @@
-- filter_name = :by_period
-- content_for :sidebar do
-  - filters = month_periods
-  = boot_nav_filter(filter_name, [{:title => t('bookyt.all'), :value => nil}] + filters)
-
-
-- filter_name = :by_project_id
-- content_for :sidebar do
-  - filters = Project.all.collect{|project| {:title => project.to_s, :value => project.id} }
-  = boot_nav_filter(filter_name, [{:title => t('bookyt.all'), :value => nil}] + filters)
+= render 'filters/by_period'
+= render 'filters/by_project'
