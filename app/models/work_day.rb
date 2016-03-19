@@ -15,8 +15,9 @@ class WorkDay < ActiveRecord::Base
     "%s %s: %s/%s" % [date, person, hours_worked, hours_due]
   end
 
-  # Calculations
-  default_scope select('work_days.*, hours_worked - hours_due AS overtime')
+  def overtime
+    hours_worked - hours_due
+  end
 
   def self.create_or_update(person, date)
     work_day = person.work_days.where(:date => date).first
